@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        //tite
         clear();
         Console.WriteLine($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now. \n" +
                           $"Your determination will guide you through the shadows of this ominous boarding house. \n" +
