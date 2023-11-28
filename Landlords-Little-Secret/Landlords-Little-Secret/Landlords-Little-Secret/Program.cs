@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 class Program
 {
     static string player = GetInput("Please Enter Your Name:");
-
+    
     static void Main()
     {
         clear();
@@ -12,7 +12,6 @@ class Program
                           $"Your determination will guide you through the shadows of this ominous boarding house. \n" +
                           $"Remember, every choice you make shapes the outcome of this chilling tale. Prepare \n" +
                           $"yourself, {player}, for the secrets that lie ahead.");
-
         Console.WriteLine("\nPress any key to continue!");
         Console.ReadKey();
 
