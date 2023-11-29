@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Alyx\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Emmanuel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alyx\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
+      "projectUniqueName": "C:\\Users\\Emmanuel\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
       "projectName": "Landlords-Little-Secret",
-      "projectPath": "C:\\Users\\Alyx\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
-      "packagesPath": "C:\\Users\\Alyx\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alyx\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\obj\\",
+      "projectPath": "C:\\Users\\Emmanuel\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
+      "packagesPath": "C:\\Users\\Emmanuel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Emmanuel\\Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alyx\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Emmanuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
