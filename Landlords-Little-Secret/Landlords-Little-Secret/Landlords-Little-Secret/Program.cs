@@ -1,17 +1,24 @@
 ﻿using System;
+using System.Data;
 using System.Security.Cryptography;
 
 class Program
 {
-    static string player = GetInput("Please Enter Your Name:");
+    static string player;
     
+    
+
     static void Main()
     {
+        player = GetInput("Please Enter Your Name: ");
         clear();
-        Console.WriteLine($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now. \n" +
-                          $"Your determination will guide you through the shadows of this ominous boarding house. \n" +
-                          $"Remember, every choice you make shapes the outcome of this chilling tale. Prepare \n" +
-                          $"yourself, {player}, for the secrets that lie ahead.");
+        Console.WriteLine($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now. \n");
+        Console.ReadKey();
+        Console.WriteLine($"Your determination will guide you through the shadows of this ominous boarding house. \n");
+        Console.ReadKey();
+        Console.WriteLine($"Remember, every choice you make shapes the outcome of this chilling tale.\n");
+        Console.ReadKey();
+        Console.WriteLine($"Preapare yourself, {player}, for the secrets that lie ahead.\n");
         Console.WriteLine("\nPress any key to continue!");
         Console.ReadKey();
 
@@ -21,7 +28,7 @@ class Program
     static void StoryIntroduction()
     {
         clear();
-        Console.WriteLine("[In an abandoned alleyway late at night. You encounter a disheveled man clutching a sealed envelope.]");
+        Console.WriteLine("(In an abandoned alleyway late at night. You encounter a disheveled man clutching a sealed envelope.)");
         Console.WriteLine("\nA. **Try to help the anonymous man.**");
         Console.WriteLine("B. Continue going home.\n");
 
@@ -40,11 +47,13 @@ class Program
     static void HelpAnonymousMan()
     {
         clear();
-        Console.WriteLine($"{player}: Hey, are you okay? You look troubled.\n\n" +
-            $"Anonymous Man: [Breathing heavily] Please, take this. It's for you. [Hands over the sealed envelope.]");
+        Console.WriteLine($"{player}: Hey, are you okay? You look troubled.\n");
         Console.ReadKey();
+        Console.WriteLine($"Anonymous Man:[Breathing Heavily]Please, take this. It's for you.\n");
+        Console.ReadKey() ;
+        Console.WriteLine("(The anonymous man tries to hands over the sealed envelope to you.)\n");
 
-        Console.WriteLine("\nA. Run away from the man, what he's holding might be dangerous!");
+        Console.WriteLine("\nA. Run away from the man, what he's holding might be dangerous!\n");
         Console.WriteLine("B. **Ask him about the thing that he's trying to give you as well as his identity.**\n");
 
         int choice = GetChoice(2);
@@ -62,13 +71,25 @@ class Program
     static void AskAnonymousMan()
     {
         clear();
-        Console.WriteLine($"{player}: What's this about? Who are you?\n\n" +
-            $"Anonymous Man: No time... [coughs] ...just read it. [Gasping for breath, Mr. Johnson staggers, collapsing to the ground.]\n\n" +
-            $"{player}: [Startled] Hey! Are you alright? Someone help!\n\n" +
-            $"Anonymous Man: [Weakly] No use... [struggles to speak] ...it's... too late for me. Find... truth. [passes out]\n\n" +
-            $"{player}: [Urgently] Hold on! I'll call for an ambulance!\n\n" +
-            $"Anonymous Man: [Whispers] No... [closes eyes, breathes his last]\n\n" +
-            $"{player}: [Panicked, checking pulse] No, no, please... [Realizing the Anonymous Man has passed away, {player} notices the sealed envelope clutched tightly in his hand.]\n");
+        Console.WriteLine($"{player}: What's this about? Who are you?\n");
+        Console.ReadKey();
+        Console.WriteLine($"Anonymous Man: No time... [coughs] ...just read it. \n");
+        Console.ReadKey();
+        Console.WriteLine("(While gasping for breath, The Anonymous Man staggers, collapsing to the ground.)\n");
+        Console.ReadKey();
+        Console.WriteLine($"{player}: [Startled] Hey! Are you alright? Someone help!\n");
+        Console.ReadKey();
+        Console.WriteLine($"Anonymous Man: [Weakly] No use... [struggles to speak] ...it's... too late for me. Find... truth.\n");
+        Console.ReadKey();
+        Console.WriteLine($"{player}: [Urgently] Hold on! I'll call for an ambulance!\n");
+        Console.ReadKey();
+        Console.WriteLine($"Anonymous Man: [Whispers] No...\n");
+        Console.ReadKey();
+        Console.WriteLine(" (As the man closes his eyes, he takes his last breath before dying...)\n");
+        Console.ReadKey();
+        Console.WriteLine($"{player}: [Panicked, checking pulse] No, no, please... \n");
+        Console.ReadKey();
+        Console.WriteLine($"[Realizing the Anonymous Man has passed away, {player} notices the sealed envelope clutched tightly in his hand.]\n");
         Console.ReadKey();
         Console.WriteLine("A. **Pick up the sealed envelope and read the content.**\n" +
             "B. Destroy the sealed envelope without reading its content.\n");
@@ -131,8 +152,9 @@ class Program
     static void pushDoorbell()
     {
         clear();
-        Console.WriteLine($"Door Unlocks, revealing an amicable old lady holding a vacuum cleaner while wearing an apron.\n" +
-            $"Landlady: Oh! It’s you {player}, how may I help you? Are you here to get [Grandfather’s Name]’s things?\n");
+        Console.WriteLine("(Door Unlocks, revealing an amicable old lady holding a vacuum cleaner while wearing an apron.)\n");
+        Console.ReadKey();
+        Console.WriteLine($"Landlady: Oh! It’s you {player}, how may I help you? Are you here to get [Grandfather’s Name]’s things?\n");
         Console.ReadKey();
         Console.WriteLine("A. Check in on her instead, just in case she says something confirming the contents of the letter.\r\n" +
             "B. **Confirm her guess, lest she suspects something.**\r\n");
