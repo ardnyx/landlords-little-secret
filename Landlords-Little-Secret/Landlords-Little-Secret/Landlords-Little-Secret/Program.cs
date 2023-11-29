@@ -174,10 +174,13 @@ class Program
     static void confirmGuess()
     {
         clear();
-        Console.WriteLine($"{player}: You’re right, my grandfather’s things are our last memory of him after all as the authorities still don't have any clues. They told us that the chances are very slim considering my grandfather’s condition\n\n" +
-            $"Landlady: I just wanna say, I’m very sorry for what happened. I will take responsibility and provide as much compensation that I can handle.\n\n" +
-            $"{player}: We know that you’re not at fault, we already talked about it when the police were first involved. We are also at fault, we prioritized our careers more instead of taking care of the person who helped all of us establish ourselves.\n\n" +
-            $"Landlady: Come in, come in! I’ll prepare some food for you. You can feel at home, {player}.\n");
+        Console.WriteLine($"{player}: You’re right, my grandfather’s things are our last memory of him after all as the authorities still don't have any clues. They told us that the chances are very slim considering my grandfather’s condition\n");
+        Console.ReadKey();
+        Console.WriteLine($"Landlady: I just wanna say, I’m very sorry for what happened. I will take responsibility and provide as much compensation that I can handle.\n");
+        Console.ReadKey();
+        Console.WriteLine($"{player}: We know that you’re not at fault, we already talked about it when the police were first involved. We are also at fault, we prioritized our careers more instead of taking care of the person who helped all of us establish ourselves.\n");
+        Console.ReadKey();
+        Console.WriteLine($"Landlady: Come in, come in! I’ll prepare some food for you. You can feel at home, {player}.\n");
         Console.ReadKey();
         Console.WriteLine("A. **Sit in the living room and observe the house as a whole.** \r\n" +
             "B. Follow her into the kitchen and offer some help.\r\n" +
@@ -232,9 +235,11 @@ class Program
     static void investigateSofa()
     {
         clear();
-        Console.WriteLine($"{player} decided to find something suspicious in those hollow spots; after a couple of minutes, the landlady still didn’t return. \n" +
-            $"There {player} found something that looks like scratches from a person getting dragged!\n" +
-            $"There were also bloodstains and even a whole fingernail under the sofa!\n");
+        Console.WriteLine($"{player} decided to find something suspicious in those hollow spots; after a couple of minutes, the landlady still didn’t return. \n");
+        Console.ReadKey();
+        Console.WriteLine($"There {player} found something that looks like scratches from a person getting dragged!\n");
+        Console.ReadKey();
+        Console.WriteLine($"There were also bloodstains and even a whole fingernail under the sofa!\n");
         Console.ReadKey();
         Console.WriteLine("A. Act composed, this basically confirms that something dark is happening here. But this isn’t my grandfather’s fingernail at all!\r\n" +
             "B. **I need to confront the old lady, I’m sure she doesn’t have much strength, I can take her down.**\r\n" +
