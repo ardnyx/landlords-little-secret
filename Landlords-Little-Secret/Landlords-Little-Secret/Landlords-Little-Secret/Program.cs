@@ -5,22 +5,15 @@ using System.Security.Cryptography;
 class Program
 {
     static string player;
-    
-    
-
-    static void Main()
+     static void Main()
     {
         player = GetInput("Please Enter Your Name: ");
         clear();
-        Console.WriteLine($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now. \n");
-        Console.ReadKey();
-        Console.WriteLine($"Your determination will guide you through the shadows of this ominous boarding house. \n");
-        Console.ReadKey();
-        Console.WriteLine($"Remember, every choice you make shapes the outcome of this chilling tale.\n");
-        Console.ReadKey();
-        Console.WriteLine($"Preapare yourself, {player}, for the secrets that lie ahead.\n");
-        Console.WriteLine("\nPress any key to continue!");
-        Console.ReadKey();
+        say($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now.");
+        say($"Your determination will guide you through the shadows of this ominous boarding house.");
+        say($"Remember, every choice you make shapes the outcome of this chilling tale.");
+        say($"Prepare yourself, {player}, for the secrets that lie ahead.");
+        say($"-- Press any key to continue --");
 
         StoryIntroduction();
     }
@@ -28,9 +21,9 @@ class Program
     static void StoryIntroduction()
     {
         clear();
-        Console.WriteLine("(In an abandoned alleyway late at night. You encounter a disheveled man clutching a sealed envelope.)");
-        Console.WriteLine("\nA. **Try to help the anonymous man.**");
-        Console.WriteLine("B. Continue going home.\n");
+        say($"In an abandoned alleyway late at night. You encounter a disheveled man clutching a sealed envelope.");
+        Console.WriteLine($"A. Try to help the anonymous man.\n" +
+            $"B. Continue going home.\n");
 
         int choice = GetChoice(2);
 
@@ -49,11 +42,11 @@ class Program
         clear();
         Console.WriteLine($"{player}: Hey, are you okay? You look troubled.\n");
         Console.ReadKey();
-        Console.WriteLine($"Anonymous Man:[Breathing Heavily]Please, take this. It's for you.\n");
+        Console.WriteLine($"Anonymous Man:[Breathing Heavily] Please, take this. It's for you.\n");
         Console.ReadKey() ;
-        Console.WriteLine("(The anonymous man tries to hands over the sealed envelope to you.)\n");
+        Console.WriteLine("(The anonymous man tries to hands over the sealed envelope to you.)");
 
-        Console.WriteLine("\nA. Run away from the man, what he's holding might be dangerous!\n");
+        Console.WriteLine("\nA. Run away from the man, what he's holding might be dangerous!");
         Console.WriteLine("B. **Ask him about the thing that he's trying to give you as well as his identity.**\n");
 
         int choice = GetChoice(2);
@@ -210,7 +203,7 @@ class Program
     static void sitLivingRoom()
     {
         clear();
-        Console.WriteLine($"{player} decided to sit in the living room and look around, when {player} sat down on the wooden sofa, he felt something hollow.\n");
+        Console.WriteLine($"{player} decided to sit in the living room and look around, when you sat down on the wooden sofa, you felt something hollow.\n");
         Console.ReadKey();
         Console.WriteLine("A. **There must be a reason why there’s some hollow spots in this sofa. I need to look into this more.**\r\n" +
             "B. This is a very old sofa after all, I just take a look and if there’s nothing suspicious, then it’s just me being paranoid.\r\n" +
@@ -235,9 +228,8 @@ class Program
     static void investigateSofa()
     {
         clear();
-        Console.WriteLine($"{player} decided to find something suspicious in those hollow spots; after a couple of minutes, the landlady still didn’t return. \n");
-        Console.ReadKey();
-        Console.WriteLine($"There {player} found something that looks like scratches from a person getting dragged!\n");
+        say($"{player} decided to find something suspicious in those hollow spots; after a couple of minutes, the landlady still didn’t return.");
+        Console.WriteLine($"There you found something that looks like scratches from a person getting dragged!\n");
         Console.ReadKey();
         Console.WriteLine($"There were also bloodstains and even a whole fingernail under the sofa!\n");
         Console.ReadKey();
@@ -264,8 +256,8 @@ class Program
     static void confrontOldLady()
     {
         clear();
-        Console.WriteLine($"{player} decided to confront the landlady in the kitchen, but {player} doesn’t have anything on hand that\n" +
-            $" can help him defend himself just in case it’s something dangerous as kitchens are basically filled with knives.\n");
+        Console.WriteLine($"YOu decided to confront the landlady in the kitchen, but you don't have anything on hand that\n" +
+            $" can help you defend yourself just in case it’s something dangerous as kitchens are basically filled with knives.\n");
         Console.ReadKey();
         Console.WriteLine("A. **Let’s see who can pull out a knife first. She’s senile, being a psychopath won’t help her.**\r\n" +
             "B. This… I need more time to prepare.\r\n");
@@ -282,14 +274,14 @@ class Program
         }
     }
 
+    
     static void pullKnife()
     {
         clear();
-        Console.WriteLine($"{player}: Landlady, I need to talk to you about something. I saw something in your living room just now." +
-            $"\n\nLandlady: Hm? What is it? " +
-            $"\n\n{player}: Well actually, someone gave me a letter yesterday. The letter said that you have some involvement in my grandfather’s disappearance." +
-            $"\n\nLandlady: Well, do you believe him?\n");
-        Console.ReadKey();
+        say($"{player}: [Landlady], I need to talk to you about something. I saw something in your living room just now.");
+        say($"Landlady: Hm? What is it?");
+        say($"{player}: Well actually, someone gave me a letter yesterday. The letter said that you have some involvement in my grandfather’s disappearance.");
+        say($"Landlady: Well, do you believe him?");
         Console.WriteLine("A. **Answer ambiguously, suggest something that can make her show her true colors. I need to hear her side first.**\r\n" +
             "B. I don’t need to walk around the bush, she’s definitely some type of crazy.\r\n");
 
@@ -308,14 +300,14 @@ class Program
     static void listenToLady()
     {
         clear();
-        Console.WriteLine($"{player}: Maybe I do, maybe I don’t. I definitely need to hear your side of the story.\n\n" +
-            $"Landlady: I doesn’t look like you want to hear anything from me, {player}, you look very angry right now.\n\n" +
-            $"{player}: What are you trying to say?\n\n" +
-            $"Landlady: I guess you’ll be angrier when you figure out everything.\n\n" +
-            $"{player}: Are you just admitting to it like that? \n\n" +
-            $"Landlady: Oh, no one’s admitting anything. I just wanna say that, what you’re trying to figure out is something that you can ask directly to your grandfather.\n\n" +
-            $"{player}: What? You know where he is?!\n\nLandlady: Well of course I do, he’s around many places. I put him there myself!\n");
-        Console.ReadKey();
+        say($"{player}: Maybe I do, maybe I don’t. I definitely need to hear your side of the story.");
+        say($"Landlady: I don't look like you want to hear anything from me, {player}, you look very angry right now.");
+        say($"{player}: What are you trying to say?");
+        say($"Landlady: I guess you’ll be angrier when you figure out everything.");
+        say($"{player}: Are you just admitting to it like that?");
+        say($"Landlady: Oh, no one’s admitting anything. I just wanna say that, what you’re trying to figure out is something that you can ask directly to your grandfather.");
+        say($"{player}: What? You know where he is?!");
+        say($"Landlady: Well of course I do, he’s around many places. I put him there myself!");
         Console.WriteLine("A. **I need to continue talking to her, I need more answers before I end her myself!**\r\n" +
             "B. One stab, and we’re done with this nightmare!\r\n");
 
@@ -334,10 +326,11 @@ class Program
     static void investigateLadyFurther()
     {
         clear();
-        Console.WriteLine($"{player}: What do you mean?\n\n" +
-            $"Landlady: You know what that means, I divided him. He and his stupid student wanted to act like police officers when I’m trying to do my business here! I guess that crazy bloke died too, he even made the letter he gave you very cryptic. He’s a stupid guy until his last breath!\n\n" +
-            $"{player}: You...\n");
-        Console.ReadKey();
+        say($"{player}: What do you mean?");
+        say($"Landlady: You know what that means, I divided him. He and his stupid student wanted to act like police officers when I’m trying to do my business here! \n" +
+            $"I guess that crazy bloke died too, he even made the letter he gave you very cryptic. \n" +
+            $"He’s a stupid guy until his last breath!");
+        say($"{player}: You…");
         Console.WriteLine("A. **I’ll just ask her when she’s half dead, I got to get rid of this woman!**\r\n" +
             "B. I need her to experience what she did to her victims.\r\n");
 
@@ -356,14 +349,12 @@ class Program
     static void attackAttempt()
     {
         clear();
-        Console.WriteLine($"{player} decided to lunge towards the unarmed landlady, but {player} didn’t expect the strength from a woman in their sixties. She’s insanely strong!\n\n" +
-            $"Landlady: (heavy breathing) Did you think I’m weak? How do you think they died then?\n\n" +
-            $"{player}: You! Just! Won’t! Shut! Up!\n\n" +
-            $"Landlady: (laughs crazily) It’s because of this you moron!\n\n");
-        Console.ReadKey();
-        Console.WriteLine($"The landlady smashed her own head on {player}’s, disregarding her own safety!\n\n");
-        Console.ReadKey();
-        Console.WriteLine($"This is your last choice, your fate will be determined by this choice!\n");
+        say($"(You decided to lunge towards the unarmed landlady, but you didn’t expect the strength from a woman in their sixties. She’s insanely strong!)\n");
+        say($"Landlady: (heavy breathing) Did you think I’m weak? How do you think they died then?");
+        say($"{player}: You! Just! Won’t! Shut! Up!");
+        say($"Landlady: (laughs crazily) It’s because of this you moron!");
+        say($"\n(The landlady smashed her own head on you, disregarding her own safety!)");
+        say($"(This is your last choice, your fate will be determined by this choice!)");
         Console.WriteLine("A. **Try to reach the knife near the kitchen entrance to stab the landlady. You might be able to inflict a serious injury, but your back will be open.**\r\n" +
             "B. Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.\r\n");
         int choice = GetChoice(2);
@@ -381,19 +372,17 @@ class Program
     static void grabKnifeToAttack()
     {
         clear();
-        Console.WriteLine($"{player} got stood up but not without stomping on the landlady’s foreleg.\n\n");
-        Console.ReadKey();
-        Console.WriteLine($"The landlady bit on {player}’s calf without hesitation. The landlady was dragged by {player} through her mouth using his leg, causing {player} immense pain!\n\n");
-        Console.ReadKey();
-        Console.WriteLine("You have reached the knife!\n\n");
-        Console.WriteLine("Bonus for finishing the game perfectly. How do you want this confrontation to end?\n");
-        Console.WriteLine("A. **Tie the landlady up, and ask her where your grandfather’s remains are as well as your doubts.**\r\n" +
+        say($"(You got stood up but not without stomping on the landlady’s foreleg.)\n");
+        say($"(The landlady bit on your calf without hesitation. The landlady was dragged by you through her mouth using his leg, causing you immense pain!)\n");
+        say($"(You have reached the knife!)\n");
+        Console.WriteLine("Bonus for finishing the game perfectly. How do you want this confrontation to end?\n\n" +
+            "A. **Tie the landlady up, and ask her where your grandfather’s remains are as well as your doubts.**\r\n" +
             "B. Just kill her! I want to end this nightmare!\r\n");
         int choice = GetChoice(2);
 
         if (choice == 1)
         {
-            ending1();
+            normalEnding();
         }
         else
         {
@@ -401,12 +390,13 @@ class Program
         }
     }
 
-    static void ending1()
+    static void normalEnding()
     {
         clear();
-        Console.WriteLine($"{player}: Just so you know, I’m now the one to decide. Before I kill you, I need to know, where are my grandfather’s remains?\n\n" +
-            $"Landlady: (whispers) You’re very arrogant for someone with a wasted leg (laughs weakly). Well, all I can say is only his limbs are with me, they’re in my garden along with the other bodies. All the others? You have to figure it out yourself (laughs with all her might).\n\n");
-        Console.ReadKey();
+        say($"{player}: Just so you know, I’m now the one to decide. Before I kill you, I need to know, where are my grandfather’s remains?");
+        say($"Landlady: (whispers) You’re very arrogant for someone with a wasted leg (laughs weakly). \n" +
+            $"Well, all I can say is only his limbs are with me, they’re in my garden along with the other bodies. \n" +
+            $"All the others? You have to figure it out yourself (laughs with all her might)");
         Console.WriteLine($"As {player} is about to punch her, {player} saw the landlady play with her dentures, \n" +
             $"revealing a small capsule that she immediately swallowed. In just a little over ten seconds, the heartbeat of the landlady stopped.");
         Console.ReadKey();
@@ -437,5 +427,11 @@ class Program
     static void clear()
     {
         Console.Clear();
+    }
+
+    static void say(string message)
+    {
+        Console.WriteLine($"{message}\n");
+        Console.ReadKey();
     }
 }
