@@ -3,6 +3,10 @@ using System;
 using System.Data;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using static System.Console;
 public static class normalEnding
 {
@@ -34,7 +38,7 @@ public static class normalEnding
   Remember, every choice you make shapes the outcome of this chilling tale.
   Prepare yourself, {player}, for the secrets that lie ahead.
 ";
-        string[] options = { "Play", "Exit" };
+        List<string> options = new List<string> { "Play", "Exit" };
         Menu mainMenu = new Menu(prompt, options);
         int selectedIndex = mainMenu.Run();
 

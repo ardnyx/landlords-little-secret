@@ -10,10 +10,10 @@ namespace Landlords_Little_Secret
     internal class Menu
     {
         private int selectedIndex;
-        private string[] Options;
+        private List<string> Options;
         private string Prompt;
 
-        public Menu(string prompt, string[] options)
+        public Menu(string prompt, List<string> options)
         {
             Prompt = prompt;
             Options = options;
@@ -22,7 +22,7 @@ namespace Landlords_Little_Secret
         private void DisplayOptions()
         {
             WriteLine(Prompt);
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
                 string prefix;
@@ -57,12 +57,12 @@ namespace Landlords_Little_Secret
                     selectedIndex--;
                     if (selectedIndex == -1)
                     {
-                        selectedIndex = Options.Length - 1;
+                        selectedIndex = Options.Count - 1;
                     }
                 } else if (keyPressed == ConsoleKey.DownArrow)
                 {
                     selectedIndex++;
-                    if (selectedIndex == Options.Length)
+                    if (selectedIndex == Options.Count)
                     {
                         selectedIndex = 0;
                     }
