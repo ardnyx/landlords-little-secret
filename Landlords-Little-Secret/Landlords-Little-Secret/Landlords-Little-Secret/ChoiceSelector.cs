@@ -1,7 +1,14 @@
 ﻿using System;
 public static class ChoiceSelector
 {
-	public static void choice_abandonedAlleyway()
+    /*
+     * NORMAL ENDING (PERFECT RUN)
+ _   _  ___  ____  __  __    _    _       _____ _   _ ____ ___ _   _  ____ 
+| \ | |/ _ \|  _ \|  \/  |  / \  | |     | ____| \ | |  _ \_ _| \ | |/ ___|
+|  \| | | | | |_) | |\/| | / _ \ | |     |  _| |  \| | | | | ||  \| | |  _ 
+| |\  | |_| |  _ <| |  | |/ ___ \| |___  | |___| |\  | |_| | || |\  | |_| |
+|_| \_|\___/|_| \_\_|  |_/_/   \_\_____| |_____|_| \_|____/___|_| \_|\____|*/
+    public static void choice_abandonedAlleyway()
 	{
         Console.WriteLine($"A. Try to help the anonymous man.\n" +
             $"B. Continue going home.\n");
@@ -263,7 +270,13 @@ public static class ChoiceSelector
         }
     }
 
-    // ENDING 2 BRANCHES
+    /*
+     * ENDING 2
+ _____ _   _ ____ ___ _   _  ____   ____  
+| ____| \ | |  _ \_ _| \ | |/ ___| |___ \ 
+|  _| |  \| | | | | ||  \| | |  _    __) |
+| |___| |\  | |_| | || |\  | |_| |  / __/ 
+|_____|_| \_|____/___|_| \_|\____| |_____|*/
     public static void choiceKateRoom()
     {
         int choice = choiceTemplate(2, 1, new string[]
