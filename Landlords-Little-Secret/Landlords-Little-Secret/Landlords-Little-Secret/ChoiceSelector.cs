@@ -146,57 +146,6 @@ public static class ChoiceSelector
             Ending2.investigateSofa();
         }
     }
-    public static void choiceRagedUser()
-    {
-        int choice = choiceTemplate(2, 2, new string[]
-        {
-            "A. Continue listening to the landlady.",
-            "B. Filled with rage, you lunge and tackle the landlady."
-        });
-
-        if (choice == 2)
-        {
-            Ending2.tackleLandlady();
-        }
-        else
-        {
-            //Continue listening to the landlady.
-        }
-    }
-    public static void choiceEscape()
-    {
-        int choice = choiceTemplate(2, 2, new string[]
-        {
-            "A. Wrestle with the landlady.",
-            "B. Try to escape from the landlady"
-        });
-
-        if (choice == 2)
-        {
-            Ending2.escapeLandlady();
-        }
-        else
-        {
-            //Wrestle with the landlady.
-        }
-    }
-    public static void choiceRunOrMock()
-    {
-        int choice = choiceTemplate(2, 1, new string[]
-        {
-            "A. Run towards the exit and escape the boarding house.",
-            "B. Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways."
-        });
-
-        if (choice == 1)
-        {
-            Ending2.Finale();
-        }
-        else
-        {
-            //Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways.
-        }
-    }
     public static void choiceInvestigateSofa()
     {
         Console.WriteLine("A. Act composed, this basically confirms that something dark is happening here. But this isn’t my grandfather’s fingernail at all!\r\n" +
@@ -313,6 +262,8 @@ public static class ChoiceSelector
             //Just kill her! I want to end this nightmare!
         }
     }
+
+    // ENDING 2 BRANCHES
     public static void choiceKateRoom()
     {
         int choice = choiceTemplate(2, 1, new string[]
@@ -325,8 +276,63 @@ public static class ChoiceSelector
         {
             Ending2.kateRoomCaught();
         }
+        else
+        {
+            // Enter the room carefully and inspect the letters.
+        }
     }
-    
+    public static void choiceRagedUser()
+    {
+        int choice = choiceTemplate(2, 2, new string[]
+        {
+            "A. Continue listening to the landlady.",
+            "B. Filled with rage, you lunge and tackle the landlady."
+        });
+
+        if (choice == 2)
+        {
+            Ending2.tackleLandlady();
+        }
+        else
+        {
+            //Continue listening to the landlady.
+        }
+    }
+    public static void choiceEscape()
+    {
+        int choice = choiceTemplate(2, 2, new string[]
+        {
+            "A. Wrestle with the landlady.",
+            "B. Try to escape from the landlady"
+        });
+
+        if (choice == 2)
+        {
+            Ending2.escapeLandlady();
+        }
+        else
+        {
+            //Wrestle with the landlady.
+        }
+    }
+    public static void choiceRunOrMock()
+    {
+        int choice = choiceTemplate(2, 1, new string[]
+        {
+            "A. Run towards the exit and escape the boarding house.",
+            "B. Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways."
+        });
+
+        if (choice == 1)
+        {
+            Ending2.Finale();
+        }
+        else
+        {
+            //Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways.
+        }
+    }
+
     static int choiceTemplate(int maxChoice, int correctAnswer, string[] choices)
     {
         Console.WriteLine($"{choices[0]},\n" +
