@@ -9,6 +9,24 @@ public static class normalEnding
     {
         player = GetInput("Please Enter Your Name: ");
         clear();
+        Console.WriteLine(@"
+ _____                                                                    _____ 
+( ___ )                                                                  ( ___ )
+ |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   | 
+ |   |       _                       _  _                  _  _           |   | 
+ |   |      | |     __ _  _ __    __| || |  ___   _ __  __| |( )___       |   | 
+ |   |      | |    / _` || '_ \  / _` || | / _ \ | '__|/ _` ||// __|      |   | 
+ |   |      | |___| (_| || | | || (_| || || (_) || |  | (_| |  \__ \      |   | 
+ |   |      |_____|\__,_||_| |_| \__,_||_| \___/ |_|   \__,_|  |___/      |   | 
+ |   |                                                                    |   | 
+ |   |   _      _  _    _    _         ____                          _    |   | 
+ |   |  | |    (_)| |_ | |_ | |  ___  / ___|   ___   ___  _ __  ___ | |_  |   | 
+ |   |  | |    | || __|| __|| | / _ \ \___ \  / _ \ / __|| '__|/ _ \| __| |   | 
+ |   |  | |___ | || |_ | |_ | ||  __/  ___) ||  __/| (__ | |  |  __/| |_  |   | 
+ |   |  |_____||_| \__| \__||_| \___| |____/  \___| \___||_|   \___| \__| |   | 
+ |   |                                                                    |   | 
+ |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___| 
+(_____)                                                                  (_____)");
         say($"Welcome, {player}. Your journey into the Landlord’s Little Secret begins now.");
         say($"Your determination will guide you through the shadows of this ominous boarding house.");
         say($"Remember, every choice you make shapes the outcome of this chilling tale.");
