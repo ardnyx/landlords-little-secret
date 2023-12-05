@@ -158,7 +158,7 @@ public static class ChoiceSelector
         }
         else if (choice == 1)
         {
-            //Act composed, this basically confirms that something dark is happening here. But this isn’t my grandfather’s fingernail at all!
+            Ending3.Ending3P2();
         }
         else
         {
@@ -332,6 +332,65 @@ public static class ChoiceSelector
 |  _| |  \| | | | | ||  \| | |  _    |_ \ 
 | |___| |\  | |_| | || |\  | |_| |  ___) |
 |_____|_| \_|____/___|_| \_|\____| |____/ */
+    public static void choiceExitAttempt()
+    {
+        int choice = choiceTemplate(2, 1, new List<string> {
+            "Exit the boarding house quietly and report to the authorities.",
+            "Confront the landlady about your suspicion" });
+        if (choice == 1)
+        {
+            Ending3.Ending3P3();
+        }
+        else
+        {
+            //Confront the landlady about your suspicion
+        }
+    }
+    public static void choiceFollowOrders()
+    {
+        int choice = choiceTemplate(2, 2, new List<string>
+        {
+            "Run towards the exit",
+            "Follow the landlady's orders"});
+        if (choice == 2)
+        {
+            Ending3.Ending3P4();
+        }
+        else
+        {
+            //Run towards the exit
+        }
+    }
+    public static void choicePanicked()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "I have nothing to do with my grandfather’s disappearance!In fact, I was even trying to find my grandfather in this establishment!",
+            "Don’t listen to her! She is making stuff up!"});
+        if (choice == 2)
+        {
+            Ending3.Ending3P5();
+        }
+        else
+        {
+            //Don’t listen to her!She is making stuff up!
+        }
+    }
+    public static void choiceAskforInvestigation()
+    {
+        int choice = choiceTemplate(2, 2, new List<string>
+        {
+            "Ask the officer to investigate what happened inside the boarding house and look at the sofa.",
+            "Continue framing the landlady, distracting the officer from the investigation." });
+        if (choice == 2)
+        {
+            Ending3.Ending3Finale();
+        }
+        else
+        {
+            //Continue framing the landlady, distracting the officer from the investigation.
+        }
+    }
 
 
     /* ENDING 4

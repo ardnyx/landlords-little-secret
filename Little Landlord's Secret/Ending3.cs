@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +8,6 @@ using Little_Landlord_s_Secret;
 
 public static class Ending3
 {
-    public static void Ending3P1()
-    {
-        Clear();
-        say($"You decided to find something suspicious in those hollow spots; after a couple of minutes, the landlady still didn’t return. You found something that looks like scratches from a person getting dragged! There were also bloodstains and even a whole fingernail under the sofa!");
-        ChoiceSelector.choiceInvestigateSofa();
-    }
     public static void Ending3P2()
     {
         Clear();
@@ -22,9 +15,7 @@ public static class Ending3
         say($"{Program.player}: Wait, could it be?");
         say($"You suddenly recognizes the distinct gold signet ring the grandfather always wear. He’s superstitious after all, and he always believed that wearing the ring would bring good luck. {Program.player} suddenly freaks out and freezes in the moment.");
         say($"How could this be? She couldn’t possibly be this sick and twisted to do stuff like this.");
-        //Exit the boarding house quietly and report to the authorities.
-        //Not sure kung tama yung choice selector kaya comment ginawa ko
-        //ChoiceSelector.choiceRunOrMock(); oki
+        ChoiceSelector.choiceExitAttempt();
     }
 
     public static void Ending3P3()
@@ -48,7 +39,7 @@ public static class Ending3
         say($"{Program.player}: Actually, I don’t like where this is going right now.");
         say($"Landlady: No, no. Actually, just sit here. You want to know what happened to your grandfather, right?");
         say($"In a surprise move, the landlady pulled out a KNIFE from her back pocket! She has caught you off guard and unarmed.");
-        //Follow the landlady’s orders
+        ChoiceSelector.choiceFollowOrders();
 
     }
 
@@ -68,7 +59,7 @@ public static class Ending3
         say($"{Program.player}: (confused) What? No, Officer, I—");
         say($"Officer: (raising an eyebrow) Mrs. Puente, let's focus on Mr. Anderson's disappearance. Do you recall when you last saw him?");
         say($"Landlady: (acting innocent) Well, I can't be expected to remember every little detail, can I? {Program.player}, on the other hand, has been acting so strange lately. Coming and going at odd hours.");
-        // I have nothing to do with my grandfather’s disappearance!In fact, I was even trying to find my grandfather in this establishment!
+        ChoiceSelector.choicePanicked();
 
     }
     public static void Ending3P5()
@@ -79,7 +70,7 @@ public static class Ending3
         say($"{Program.player}: (exasperated) Officer, I swear, I have nothing to do with this. Mrs. Puente is trying to distract you.");
         say($"Officer: (rubbing his temples) Mrs. Puente, I need your cooperation. We're trying to find Mr. Anderson. If you have any relevant information, please share it.");
         say($"Landlady: (acting offended) Relevant information? Oh, Officer, I'm just a simple landlady trying to run a respectable establishment. {Program.player}:, on the other hand, is trying to ruin my reputation.");
-        //Ask the officer to investigate what happened inside the boarding house and look at the sofa.
+        ChoiceSelector.choiceAskforInvestigation();
 
     }
 
