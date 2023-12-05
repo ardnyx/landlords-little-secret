@@ -10,7 +10,7 @@ namespace Little_Landlord_s_Secret
 {
     internal class Ending6
     {
-        public void Ending6Part1()
+        public static void Ending6Part1()
         {
             say($"{Program.player}: Can you hear her? She's absurd! Why are you still not arresting her? I'm going to sue you incompetent police as well!");
             say($"(Your threat did not make the officers happy, they started seeing you in the same light as the landlady as your agitated look made it seem like you're guilty)");
@@ -19,7 +19,7 @@ namespace Little_Landlord_s_Secret
             // old lady, this is why everyone sees your force as corrupt! Can't even do
             //do your jobs properly!
         }
-        public void angryToOfficer()
+        public static void angryToOfficer()
         {
             say($"Police Officer: I think you've had enough time to sort yourself out. You're just disrespecting us at this point. \n" +
                 $"Now, regardless if you're the suspect or not, you need to go to the police station first!");

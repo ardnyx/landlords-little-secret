@@ -341,6 +341,88 @@ public static class ChoiceSelector
 | |___| |\  | |_| | || |\  | |_| | |__   _|
 |_____|_| \_|____/___|_| \_|\____|    |_|  */
 
+    public static void choiceMadalingAraw()
+    {
+        int choice = choiceTemplate(2, 2, new List<string>
+        {
+            "A. Probably just neighborhood cats",
+            "B. What was that? I should check it out."
+        });
+
+        if (choice == 2)
+        {
+            Ending4.peepGarden();
+        }
+        else
+        {
+            //Probably just neighborhood cats.
+        }
+    }
+    public static void choiceSusGarden()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. Hurry up and run back to room before landlord sees me here.",
+            "B. I should leave no evidence i was here and go to my room"
+        });
+
+        if (choice == 1)
+        {
+            Ending4.footprintEvidence();
+        }
+        else
+        {
+            //I should leave no evidence i was here and go to my room
+        }
+    }
+    public static void choiceEatBreakfast()
+    {
+        int choice = choiceTemplate(2, 2, new List<string>
+        {
+            "A. I'm already late for work i should get going",
+            "B. That's great! i'll be down in a bit"
+        });
+
+        if (choice == 2)
+        {
+            Ending4.susBreakfast();
+        }
+        else
+        {
+            //that's great! i'll be down in a bit
+        }
+    }
+    public static void choiceDishes()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. I'm running a bit late, but a quick bite shouldn't hurt.",
+            "B. This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late."
+        });
+
+        if (choice == 1)
+        {
+            Ending4.poisonedFood();
+        }
+        else
+        {
+            //This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late.
+        }
+    }
+    public static void choiceTrytoKill()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. (While still having a little strength) I WILL KILL YOU! You deserve to die!!!",
+            "B. Grab a knife and charge at the landlady."
+        });
+
+        if (choice == 1 || choice == 2)
+        {
+            Ending4.Finale();
+        }
+    }
+
 
 
     /* ENDING 5
