@@ -13,17 +13,14 @@ namespace Little_Landlord_s_Secret
         {
             Clear();
             say($"Landlady: Sure I could use some help? Well, will you please get some vegetables from my garden? I need them for the thing that I'm cooking for you");
-            //Follow her into the kitchen and offer some help
+            ChoiceSelector.choiceGrabVeggies();
         }
-        public static void whatShouldGet()
+        public static void youShouldGet()
         {
             Clear();
-            say($"Landlady: Sure I could use some help? Well, will you please get some vegetables from my garden? I need them for the thing that I'm cooking for you");
-
         }
         public static void littleRascal()
         {
-            bool haveHelpedLandlady = true;
             Clear();
             say($"Landlady: Oh you little rascal! You're already  an adult but you're still scared of some dirt! \n" +
                 $"Just sit in the living room and wait then, lunch will be ready in a while.");

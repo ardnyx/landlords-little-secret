@@ -349,7 +349,7 @@ public static class ChoiceSelector
             "B. I'm sorry, I am very scared of the insects from your garden. Can I help you with something else?"
         });
 
-        if (choice == 2)
+        if (choice == 1)
         {
             Ending4.youShouldGet();
         }

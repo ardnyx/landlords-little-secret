@@ -7,7 +7,7 @@ using static System.Console;
 
 namespace Little_Landlord_s_Secret
 {
-    internal class Class1
+    internal class Ending1
     {
     }
 }
