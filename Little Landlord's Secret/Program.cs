@@ -15,7 +15,8 @@ namespace Little_Landlord_s_Secret
         {
             player = GetInput("Please Enter Your Name: ");
             Clear();
-            string prompt = $@"            
+            string prompt = $@" 
+              
  _____                                                                    _____ 
 ( ___ )                                                                  ( ___ )
  |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   | 

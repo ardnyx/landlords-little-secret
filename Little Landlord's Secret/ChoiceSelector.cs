@@ -116,7 +116,7 @@ public static class ChoiceSelector
         }
         else if (choice == 2)
         {
-            //Follow her into the kitchen and offer some help.
+            Ending4.helpLandlady();
         }
         else if (choice == 3)
         {
@@ -341,6 +341,23 @@ public static class ChoiceSelector
 | |___| |\  | |_| | || |\  | |_| | |__   _|
 |_____|_| \_|____/___|_| \_|\____|    |_|  */
 
+    public static void choiceGrabVeggies()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. Sure, what should I get?",
+            "B. I'm sorry, I am very scared of the insects from your garden. Can I help you with something else?"
+        });
+
+        if (choice == 2)
+        {
+            Ending4.youShouldGet();
+        }
+        else
+        {
+            Ending4.littleRascal();
+        }
+    }
     public static void choiceMadalingAraw()
     {
         int choice = choiceTemplate(2, 2, new List<string>
@@ -443,7 +460,7 @@ public static class ChoiceSelector
 
     private static int choiceTemplate(int maxChoice, int correctAnswer, List<string> choices)
     {
-        WriteLine($"{choices[0]},\n" +
+        WriteLine($"{choices[0]}\n" +
             $"{choices[1]}\n");
 
         return GetChoice(maxChoice);
