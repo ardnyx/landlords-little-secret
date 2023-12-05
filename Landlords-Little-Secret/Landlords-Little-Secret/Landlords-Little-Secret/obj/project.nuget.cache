@@ -1,8 +1,45 @@
 {
   "version": 2,
-  "dgSpecHash": "I5a16Zr2WpC53gTR1CG5e2IP6b1puX0i888xt+mvyP5OJl7/T+eInlzj6hgBa1ArQMJDqU1C7+z/WnlBkBqV5g==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Alyx\\Documents\\GitHub\\Final-Project\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
+  "dgSpecHash": "B7UmHe3IbScUlyLn2+WsQhFb8UaMx1Fz6cTsHy4ON7H3xKfJ1mhcZCYOApxSYsz9RFUZzTp1EryL0U/8YGaAXg==",
+  "success": false,
+  "projectFilePath": "E:\\Windows Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.WindowsDesktop.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.WindowsDesktop.App.Ref",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.NETCore.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.NETCore.App.Ref",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.AspNetCore.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.AspNetCore.App.Ref",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.NETCore.App.Host.win-x64. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.NETCore.App.Host.win-x64",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
