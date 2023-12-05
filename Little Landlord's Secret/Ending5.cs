@@ -13,6 +13,7 @@ namespace Little_Landlord_s_Secret
         public static void Ending5s()
         {
             //added ending 5
+            //recommit
             say("Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways.");
             say($"While running without looking properly, {Program.player} was successfully trapped by the landlady, the landlady laughs.");
             say("Landlady: You must be some kind of stupid to not figure out why I can kill all those people way younger than me, I know every nook and cranny of this house. No one can just run around aimlessly");
