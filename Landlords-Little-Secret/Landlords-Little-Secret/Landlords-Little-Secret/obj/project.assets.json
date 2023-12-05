@@ -8,26 +8,32 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Alyx\\.nuget\\packages\\": {}
+    "C:\\Users\\Reiyane\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Windows Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
+      "projectUniqueName": "C:\\Users\\Reiyane\\Desktop\\repos\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
       "projectName": "Landlords-Little-Secret",
-      "projectPath": "E:\\Windows Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
-      "packagesPath": "C:\\Users\\Alyx\\.nuget\\packages\\",
-      "outputPath": "E:\\Windows Documents\\GitHub\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\obj\\",
+      "projectPath": "C:\\Users\\Reiyane\\Desktop\\repos\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret.csproj",
+      "packagesPath": "C:\\Users\\Reiyane\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Reiyane\\Desktop\\repos\\finalproject-CP1\\Landlords-Little-Secret\\Landlords-Little-Secret\\Landlords-Little-Secret\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Alyx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Reiyane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
@@ -55,69 +61,13 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.25, 6.0.25]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.WindowsDesktop.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.WindowsDesktop.App.Ref",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.NETCore.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.NETCore.App.Ref",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.App.Ref. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.AspNetCore.App.Ref",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.NETCore.App.Host.win-x64. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.NETCore.App.Host.win-x64",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

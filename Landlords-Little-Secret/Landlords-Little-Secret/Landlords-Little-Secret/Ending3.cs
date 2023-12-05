@@ -23,7 +23,7 @@ public static class Ending3
         say($"How could this be? She couldn’t possibly be this sick and twisted to do stuff like this.");
         //Exit the boarding house quietly and report to the authorities.
         //Not sure kung tama yung choice selector kaya comment ginawa ko
-        //ChoiceSelector.choiceRunOrMock();
+        //ChoiceSelector.choiceRunOrMock(); oki
     }
 
     public static void Ending3P3()
