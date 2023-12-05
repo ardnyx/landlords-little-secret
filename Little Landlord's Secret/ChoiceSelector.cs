@@ -521,7 +521,7 @@ public static class ChoiceSelector
     {
         for (int x = 0; x < maxChoice; x++)
         {
-            WriteLine($"{choices[x]}");
+            WriteLine($"{choices[x]}"); //updated choicetemplate
         }
         return GetChoice(maxChoice);
     }
