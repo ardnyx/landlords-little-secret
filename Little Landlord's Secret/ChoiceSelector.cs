@@ -519,9 +519,10 @@ public static class ChoiceSelector
 
     private static int choiceTemplate(int maxChoice, int correctAnswer, List<string> choices)
     {
-        WriteLine($"{choices[0]}\n" +
-            $"{choices[1]}\n");
-
+        for (int x = 0; x < maxChoice; x++)
+        {
+            WriteLine($"{choices[x]}");
+        }
         return GetChoice(maxChoice);
     }
     private static int GetChoice(int maxChoice)
