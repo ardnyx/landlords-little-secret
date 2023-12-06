@@ -36,6 +36,7 @@ namespace Little_Landlord_s_Secret
             } while (keyPressed != ConsoleKey.Spacebar);
             normalEnding.ReadEnvelope();
         }
+
         static void say(string message)
         {
             WriteLine($"{message}\n");
