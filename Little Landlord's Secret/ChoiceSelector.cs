@@ -322,7 +322,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways.
+            Ending5.Ending5s();
         }
     }
 
@@ -343,7 +343,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //Confront the landlady about your suspicion
+            normalEnding.confrontOldLady();
         }
     }
     public static void choiceFollowOrders()
@@ -358,22 +358,22 @@ public static class ChoiceSelector
         }
         else
         {
-            //Run towards the exit
+            Ending2.escapeLandlady();
         }
     }
     public static void choicePanicked()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
-            "I have nothing to do with my grandfather’s disappearance!In fact, I was even trying to find my grandfather in this establishment!",
+            "I have nothing to do with my grandfather’s disappearance! In fact, I was even trying to find my grandfather in this establishment!",
             "Don’t listen to her! She is making stuff up!"});
-        if (choice == 2)
+        if (choice == 1)
         {
             Ending3.Ending3P5();
         }
         else
         {
-            //Don’t listen to her!She is making stuff up!
+            Ending6.Ending6Part1();
         }
     }
     public static void choiceAskforInvestigation()
@@ -388,7 +388,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //Continue framing the landlady, distracting the officer from the investigation.
+            Ending6.Ending6Part1();
         }
     }
 
@@ -465,7 +465,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //that's great! i'll be down in a bit
+            //I'm already late for work, I should get going
         }
     }
     public static void choiceDishes()
@@ -515,6 +515,23 @@ public static class ChoiceSelector
 |  _| |  \| | | | | ||  \| | |  _  | '_ \ 
 | |___| |\  | |_| | || |\  | |_| | | (_) |
 |_____|_| \_|____/___|_| \_|\____|  \___/ */
+
+    public static void choiceAngrytoPolice()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. Thank you officer, I'll keep your promise to heart. You can call me if you need anything for the investigation",
+            "B. You better! Do your job properly and don't listen to a senile old lady, this is why everyone sees your force as corrupt! Can't even do your jobs properly!"
+        });
+        if (choice == 2)
+        {
+            Ending6.angryToOfficer();
+        }
+        else
+        {
+            Ending3.Ending3Finale();
+        }
+    }
 
 
     private static int choiceTemplate(int maxChoice, int correctAnswer, List<string> choices)
