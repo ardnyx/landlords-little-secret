@@ -9,6 +9,23 @@ using Little_Landlord_s_Secret;
 
 public static class ChoiceSelector
 {
+    /* ALTERNATIVE ENDING */
+    public static void subtleKnock()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. Answer the door",
+            "B. Sleep Again"
+        });
+        if (choice == 1)
+        {
+            alternativeRoute.outsideDoor();
+        }
+        else
+        {
+            //You wake up to three loud knocks coming from outside.
+        }
+    }
     /* NORMAL ENDING (PERFECT RUN)
  _   _  ___  ____  __  __    _    _       _____ _   _ ____ ___ _   _  ____ 
 | \ | |/ _ \|  _ \|  \/  |  / \  | |     | ____| \ | |  _ \_ _| \ | |/ ___|
@@ -26,7 +43,7 @@ public static class ChoiceSelector
                 normalEnding.HelpAnonymousMan();
                 break;
             case 2:
-                //Continue going home.
+                alternativeRoute.altRouteStart();
                 break;
         }
     }
@@ -458,7 +475,7 @@ public static class ChoiceSelector
         {
             "A. Hurry up and run back to room before landlord sees me here.",
             "B. I should leave no evidence i was here and go to my room"
-        });f
+        });
 
         if (choice == 1)
         {
