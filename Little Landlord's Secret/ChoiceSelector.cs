@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Landlords_Little_Secret;
 using Little_Landlord_s_Secret;
+using System.Net.Mail;
 
 public static class ChoiceSelector
 {
@@ -23,6 +24,11 @@ public static class ChoiceSelector
         }
         else
         {
+            WriteLine($"You wake up to three loud knocks coming from outside!");
+            ReadKey();
+            WriteLine("\nYou need to do something about the noise!");
+            ReadKey();
+            alternativeRoute.outsideDoor();
             //You wake up to three loud knocks coming from outside.
         }
     }
@@ -58,7 +64,7 @@ public static class ChoiceSelector
         }
         else
         {
-            // Run away from the man, what he's holding might be dangerous.
+            alternativeRoute.altRouteStart();
         }
     }
     public static void choiceEnvelope()
@@ -72,7 +78,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //Destroy the sealed envelope without reading its content.
+            alternativeRoute.GoHome();
         }
     }
     public static void choiceLetterContent()
@@ -86,7 +92,23 @@ public static class ChoiceSelector
         }
         else
         {
-            //This is some crazy prank, my grandfather ran away; he had dementia and the landlady was already nice enough to dedicate her time to taking care of him. She cried so much when she told us the news!
+            alternativeRoute.crazyPrank();
+        }
+    }
+    public static void phoneCall()
+    {
+        int choice = choiceTemplate(2, 1, new List<string>
+        {
+            "A. Answer the phone call",
+            "B. Throw your phone away and hide in your house."
+        });
+        if (choice == 1)
+        {
+            alternativeRoute.phoneCall();
+        }
+        else
+        {
+            alternativeRoute.GoHome();
         }
     }
 
