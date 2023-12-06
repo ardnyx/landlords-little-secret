@@ -124,7 +124,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //Go to [Tenant 2]’s room, his weird tendencies may help reveal some things.
+            Ending4.tenant2Room();
         }
     }
     public static void choiceSomethingHollow()
@@ -162,7 +162,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //This might be from [Tenant 2], I heard he does bizarre disgusting things all the time. I’ll inform the landlady just in case.
+            Ending4.doesntSuspect();
         }
     }
     public static void choiceConfrontLady()
@@ -248,6 +248,24 @@ public static class ChoiceSelector
         else
         {
             //Just kill her! I want to end this nightmare!
+        }
+    }
+
+    /* ENDING 1 */
+    public static void choiceNextMove()
+    {
+        int choice = choiceTemplate(2, 2, new List<string>
+        {
+            "A. Confront the landlord about what you saw.",
+            "B. Report to the Police, they have to be the ones to give justice ."
+        });
+        if (choice == 2)
+        {
+            Ending1.reportPolice();
+        }
+        else
+        {
+            normalEnding.confrontOldLady();
         }
     }
 
@@ -440,7 +458,7 @@ public static class ChoiceSelector
         {
             "A. Hurry up and run back to room before landlord sees me here.",
             "B. I should leave no evidence i was here and go to my room"
-        });
+        });f
 
         if (choice == 1)
         {
@@ -448,7 +466,7 @@ public static class ChoiceSelector
         }
         else
         {
-            //I should leave no evidence i was here and go to my room
+            Ending1.removeEvidence();
         }
     }
     public static void choiceEatBreakfast()

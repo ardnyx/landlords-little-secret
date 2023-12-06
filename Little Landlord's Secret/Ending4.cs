@@ -19,19 +19,34 @@ namespace Little_Landlord_s_Secret
         {
             Clear();
         }
+        public static void tenant2Room()
+        {
+            Clear();
+            say($" (You went up the second floor)");
+            say($" (You have reached the hallways)");
+            for(int x = 0; x < 3; x++)
+            {
+                say($".");
+            }
+            say($"Finger...nails..?");
+            ChoiceSelector.choiceInvestigateSofa();
+        }
         public static void littleRascal()
         {
             Clear();
             say($"Landlady: Oh you little rascal! You're already  an adult but you're still scared of some dirt! \n" +
                 $"Just sit in the living room and wait then, lunch will be ready in a while.");
         }
-        public static void informedLandlady()
+        public static void doesntSuspect()
         {
-            //NEED REVISIONS
+            Clear();
+            say($"You don't suspect anything regarding the fingernail and continue exploring the house. Later on, you went to your room and took a rest.");
+            middleOfTheNight();
         }
         public static void middleOfTheNight()
         {
-            say($"(In the middle of the night, you hear something strange in the garden shed.)");
+            Clear();
+            say($" (In the middle of the night, you hear something strange in the garden shed.)");
             ChoiceSelector.choiceMadalingAraw();
         }
         public static void peepGarden()
