@@ -13,7 +13,6 @@ namespace Little_Landlord_s_Secret
         public static string player;
         static void Main(string[] args)
         {
-            Console.Title = 
             player = GetInput("Please Enter Your Name: ");
             Clear();
             string prompt = $@" 
