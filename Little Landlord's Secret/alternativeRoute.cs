@@ -18,8 +18,7 @@ namespace Little_Landlord_s_Secret
         }
         public static void GoHome()
         {
-            Clear();
-            say($" (You decided to go home and treat what you saw as a bad dream. Although, it's not something that is easily forgettable.)");
+            say($"(Anyway, you decided to go home and treat what you saw as a bad dream. Although, it's not something that is easily forgettable.)");
             say($"-- Press any key to continue --");
             slept();
         }

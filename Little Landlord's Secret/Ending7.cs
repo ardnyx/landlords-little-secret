@@ -66,7 +66,13 @@ namespace Little_Landlord_s_Secret
             say($"Landlady: Oh! It’s you {Program.player}, how may I help you? Are you here to get [Grandfather’s Name]’s things?");
             ChoiceSelector.choiceMeetLandlady();
         }
-
+        public static void checkInOnHer()
+        {
+            Clear();
+            say($"Player: I'm doing pretty well. Although I'm still not used to it, I have to get through and live on for him as well right?");
+            say($"Landlady: Well, what brought you here today? Are you here to pick up his things?");
+            confirmGuess();
+        }
         public static void confirmGuess()
         {
             Clear();

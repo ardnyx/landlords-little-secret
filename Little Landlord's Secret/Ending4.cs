@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
@@ -18,6 +19,11 @@ namespace Little_Landlord_s_Secret
         public static void youShouldGet()
         {
             Clear();
+            say($"Landlady: I want you to fetch me some corns from the garden. I remembered planting some a few weeks ago, check them out if they're already ripe.");
+            say($"{Program.player}:Alright then.");
+            say($"(While you were harvesting, something odd caught your eye which doesn't look like a... corn..?");
+            say($"{Program.player}: This.. is..");
+            ChoiceSelector.choiceInvestigateSofa();
         }
         public static void tenant2Room()
         {
@@ -40,7 +46,19 @@ namespace Little_Landlord_s_Secret
         public static void doesntSuspect()
         {
             Clear();
-            say($"You don't suspect anything regarding the fingernail and continue exploring the house. Later on, you went to your room and took a rest.");
+            say($" (Despite spotting a fingernail on the garden, you dismissed it even though you felt a bit stressed and uncomfortable)");
+            say($"{Program.player}: A-ah.. Well I guess this is just some of the disgusting things the other tenant usually does. Anyway, I have to bring these corns back to landlady.");
+            say($" (You walk back to the house)");
+            Clear();
+            say($"{Program.player}: I'm back. here's your corns.");
+            say($"Landlady: Great! The dish will be almost done. Just stay in touch for now.");
+            say($"{Program.player}: Thanks! And oh, I saw a fingernail.. or was it a fingernail, anyway, I saw it on your garden when I was picking up corns. \n" +
+                $"I think it's from the other tenant, I heard he usually has this weird disgusting hobbies.. right?");
+            say($"Landlady: O-oh! haha, I'm so sorry about that, I'll talk to him later on, my gosh he needs some scolding!");
+            say($" (After helping the landlady, nothing much happened aftwardds.)");
+            Write($" (It's already night. You came back to your room and slept. The first day...");
+            Write($" isn't done.");
+            ReadKey();
             middleOfTheNight();
         }
         public static void middleOfTheNight()
