@@ -7,11 +7,20 @@ using System.Text;
 using Landlords_Little_Secret;
 using Little_Landlord_s_Secret;
 using System.Net.Mail;
+using System.Security.Cryptography.X509Certificates;
+using System.Data.SqlTypes;
 
 public static class ChoiceSelector
 {
+    public static int lettercount = 0;
+    public static bool answeredPhone = false;
+    public static bool wentHome => alternativeRoute.wentHome;
+    public static bool declinedPhone => alternativeRoute.declinedPhone;
+    public static bool throwPhone { get; private set; } = false;
+    public static bool destroyEnvelope { get; private set; } = false;
+    public static bool wrestleLandlady { get; private set; } = false;
     /* ALTERNATIVE ENDING */
-    public static void subtleKnock()
+    public static string subtleKnock()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -20,15 +29,15 @@ public static class ChoiceSelector
         });
         if (choice == 1)
         {
-            alternativeRoute.outsideDoor();
+            return alternativeRoute.outsideDoor();
         }
         else
         {
-            WriteLine($"You wake up to three loud knocks coming from outside!");
+            WriteLine($"\nYou wake up to three loud knocks coming from outside!");
             ReadKey();
-            WriteLine("\nYou need to do something about the noise!");
+            WriteLine("\nYou need to do something about the noise!\n");
             ReadKey();
-            alternativeRoute.outsideDoor();
+            return alternativeRoute.outsideDoor();
             //You wake up to three loud knocks coming from outside.
         }
     }
@@ -38,111 +47,179 @@ public static class ChoiceSelector
 |  \| | | | | |_) | |\/| | / _ \ | |     |  _| |  \| | | | | ||  \| | |  _ 
 | |\  | |_| |  _ <| |  | |/ ___ \| |___  | |___| |\  | |_| | || |\  | |_| |
 |_| \_|\___/|_| \_\_|  |_/_/   \_\_____| |_____|_| \_|____/___|_| \_|\____|*/
-    public static void choice_abandonedAlleyway()
+    public static string choice_abandonedAlleyway()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Try to help the anonymous man.",
-            "B. Continue going home.\n" });
+            "B. Continue going home." });
         switch (choice)
         {
             case 1:
-                normalEnding.HelpAnonymousMan();
-                break;
+                return normalEnding.HelpAnonymousMan();
             case 2:
-                alternativeRoute.altRouteStart();
-                break;
+                return alternativeRoute.altRouteStart();
+            default:
+                return "Invalid";
         }
     }
-    public static void choice_holdingSomething()
+    public static string choice_holdingSomething()
     {
         int choice = choiceTemplate(2, 2, new List<string> {
             "A. Run away from the man, what he's holding might be dangerous!",
             "B. **Ask him about the thing that he's trying to give you as well as his identity.\n" });
         if (choice == 2)
         {
-            normalEnding.AskAnonymousMan();
+            return normalEnding.AskAnonymousMan();
         }
         else
         {
-            alternativeRoute.altRouteStart();
+            return alternativeRoute.altRouteStart();
         }
     }
-    public static void choiceEnvelope()
+    public static string choiceEnvelope()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Pick up the sealed envelope and read the content.",
             "B. Destroy the sealed envelope without reading its content.\n" });
         if (choice == 1)
         {
-            normalEnding.ReadEnvelope();
+            return normalEnding.ReadEnvelope();
         }
         else
         {
-            alternativeRoute.GoHome();
+            destroyEnvelope = true;
+            return alternativeRoute.GoHome();
         }
     }
-    public static void choiceLetterContent()
+    public static string choiceLetterContent()
     {
-        int choice = choiceTemplate(2, 2, new List<string> {
-            "A. This is some crazy prank, my grandfather ran away; he had dementia and the landlady was already nice enough to dedicate her time to taking care of him. She cried so much when she told us the news!",
-            "B. I guess I’ll try to go, I need to get gramps’ belongings from there anyway. I doubt there will be anything to see.\n" });
-        if (choice == 2)
+        List<string> choices;
+
+        if (answeredPhone)
         {
-            normalEnding.GoToHouse();
+            choices = new List<string>
+            {
+                "???!!"
+            };
+        }
+        else if (declinedPhone && lettercount >= 2)
+        {
+            choices = new List<string>
+            {
+                "No.. way.."
+            };
+        }
+        else if (lettercount >= 2)
+        {
+            choices = new List<string>
+            {
+                "What.. the fuck?! This letter-"
+            };
         }
         else
         {
-            alternativeRoute.crazyPrank();
+            choices = new List<string>
+            {
+                "I guess I’ll try to go, I need to get gramps’ belongings from there anyway. I doubt there will be anything to see.",
+                "This is some crazy prank, my grandfather ran away; he had dementia and the landlady was already nice enough to dedicate her time to taking care of him. She cried so much when she told us the news!\n"
+            };
+        }
+        int choice = choiceTemplate(choices.Count, 2, choices);
+        if (choice == 1)
+        {
+            if (answeredPhone)
+            {
+                say($"{Program.player}: Who.. was that?");
+                say($"{Program.player}: But as stupid as it sounds, I really have to go.");
+            }
+            else if (declinedPhone && lettercount >= 2)
+            {
+                say($"{Program.player}: This.. I can't.. but I have to go.");
+            }
+            else if (lettercount >= 2)
+            {
+                say($"{Program.player}: Stay calm-- stay calm.");
+                say($"{Program.player}: Let's go then.");
+            }
+            return normalEnding.GoToHouse();
+        }
+        else
+        {
+            lettercount++;
+            return alternativeRoute.crazyPrank();
         }
     }
-    public static void phoneCall()
+    public static string phoneCall()
     {
-        int choice = choiceTemplate(2, 1, new List<string>
+        List<string> choices = new List<string>
         {
             "A. Answer the phone call",
             "B. Throw your phone away and hide in your house.\n"
-        });
+        };
+
+        if (wentHome)
+        {
+            choices[1] = "B. Decline the phone call\n";
+        }
+
+        int choice = choiceTemplate(2, 1, choices);
+
         if (choice == 1)
         {
-            alternativeRoute.phoneCall();
+            answeredPhone = true;
+            return alternativeRoute.phoneCall();
+        }
+        else if (wentHome)
+        {
+            return alternativeRoute.threwPhoneandWentHome();
         }
         else
         {
-            alternativeRoute.GoHome();
+            throwPhone = true;
+            ForegroundColor = ConsoleColor.Red;
+            BackgroundColor = ConsoleColor.Black;
+            WriteLine("YOU THREW YOUR PHONE AWAY\n");
+            ResetColor();
+            ReadKey();
+            return alternativeRoute.GoHome();
         }
     }
 
-    public static void choiceHouseArrived()
+    public static string choiceHouseArrived()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Push the doorbell and try to look approachable towards the elderly landlady as much as possible.",
             "B. Knock on the door and wait with a straight face, trying to look as unaware as possible.\n" });
         if (choice == 1)
         {
-            normalEnding.pushDoorbell();
+            return normalEnding.pushDoorbell();
         }
         else
         {
-            normalEnding.pushDoorbell();
+            return normalEnding.pushDoorbell();
         }
     }
 
-    public static void choiceMeetLandlady()
+    public static string choiceMeetLandlady(bool clearConsole = true)
     {
         int choice = choiceTemplate(2, 2, new List<string> {
             "A. Check in on her instead, just in case she says something confirming the contents of the letter.",
             "B. Confirm her guess, lest she suspects something.\n" });
         if (choice == 2)
         {
-            normalEnding.confirmGuess();
+            if (clearConsole)
+            {
+                Clear();
+            }
+            return normalEnding.confirmGuess();
         }
         else
         {
-            normalEnding.checkInOnHer();
+            return normalEnding.checkInOnHer();
         }
     }
 
-    public static void choiceInsideHouse()
+    public static string choiceInsideHouse()
     {
         int choice = choiceTemplate(4, 1, new List<string> {
             "A. Sit in the living room and observe the house as a whole.",
@@ -151,22 +228,22 @@ public static class ChoiceSelector
             "D. Go to [Tenant 2]’s room, his weird tendencies may help reveal some things.\n" });
         if (choice == 1)
         {
-            normalEnding.sitLivingRoom();
+            return normalEnding.sitLivingRoom();
         }
         else if (choice == 2)
         {
-            Ending4.helpLandlady();
+            return Ending4.helpLandlady();
         }
         else if (choice == 3)
         {
-            Ending2.kateRoom();
+            return Ending2.kateRoom();
         }
         else
         {
-            Ending4.tenant2Room();
+            return Ending4.tenant2Room();
         }
     }
-    public static void choiceSomethingHollow()
+    public static string choiceSomethingHollow()
     {
         int choice = choiceTemplate(3, 1, new List<string> {
             "A. There must be a reason why there’s some hollow spots in this sofa. I need to look into this more.",
@@ -174,107 +251,107 @@ public static class ChoiceSelector
             "C. It’s nothing, if there’s anything suspicious, it has to be in my grandfather’s room, not in some place like the living room sofa.\n" });
         if (choice == 1)
         {
-            normalEnding.investigateSofa();
+            return normalEnding.investigateSofa();
         }
         else if (choice == 2)
         {
-            //This is a very old sofa after all, I just take a look and if there’s nothing suspicious, then it’s just me being paranoid
+            return "WIP"; //This is a very old sofa after all, I just take a look and if there’s nothing suspicious, then it’s just me being paranoid
         }
         else
         {
-            Ending2.investigateSofa();
+            return Ending2.investigateSofa();
         }
     }
-    public static void choiceInvestigateSofa()
+    public static string choiceInvestigateSofa()
     {
         int choice = choiceTemplate(3, 2, new List<string> {
             "A. Act composed, this basically confirms that something dark is happening here. But this isn’t my grandfather’s fingernail at all!",
             "B. Something dark is happening here. I need to confront the landlady about this.",
-            "C. Hm? Ah this fingernail might be from [Tenant 2], I've heard he does disgusting things all the time. I'll inform the landlady just in case." });
+            "C. Hm? Ah this fingernail might be from [Tenant 2], I've heard he does disgusting things all the time. I'll inform the landlady just in case.\n" });
         if (choice == 2)
         {
-            normalEnding.confrontOldLady();
+            return normalEnding.confrontOldLady();
         }
         else if (choice == 1)
         {
-            Ending3.Ending3P2();
+            return Ending3.Ending3P2();
         }
         else
         {
-            Ending4.doesntSuspect();
+            return Ending4.doesntSuspect();
         }
     }
-    public static void choiceConfrontLady()
+    public static string choiceConfrontLady()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Let’s see who can pull out a knife first. She’s senile, being a psychopath won’t help her.",
             "B. This… I need more time to prepare.\n" });
         if (choice == 1)
         {
-            normalEnding.pullKnife();
+            return normalEnding.pullKnife();
         }
         else
         {
-            //This… I need more time to prepare.
+            return "WIP"; //This… I need more time to prepare.
         }
     }
-    public static void choiceHearOtherSide()
+    public static string choiceHearOtherSide()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Answer ambiguously, suggest something that can make her show her true colors. I need to hear her side first.",
             "B. I don’t need to walk around the bush, she’s definitely some type of crazy.\n" });
         if (choice == 1)
         {
-            normalEnding.listenToLady();
+            return normalEnding.listenToLady();
         }
         else
         {
-            //I don’t need to walk around the bush, she’s definitely some type of crazy.
+            return "WIP"; //I don’t need to walk around the bush, she’s definitely some type of crazy.
         }
     }
-    public static void choiceContinueTalking()
+    public static string choiceContinueTalking()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. I need to continue talking to her, I need more answers before I end her myself!",
             "B. One stab, and we’re done with this nightmare!\n" });
         if (choice == 1)
         {
-            normalEnding.investigateLadyFurther();
+            return normalEnding.investigateLadyFurther();
         }
         else
         {
-            //One stab, and we’re done with this nightmare!
+            return "WIP"; //One stab, and we’re done with this nightmare!
         }
     }
-    public static void choiceInvestigateFurther()
+    public static string choiceInvestigateFurther()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. I’ll just ask her when she’s half dead, I got to get rid of this woman!",
             "B. I need her to experience what she did to her victims.\n" });
         if (choice == 1)
         {
-            normalEnding.attackAttempt();
+            return normalEnding.attackAttempt();
         }
         else
         {
-            //I need her to experience what she did to her victims.
+            return "WIP"; //I need her to experience what she did to her victims.
         }
     }
-    public static void choiceAttackAttempt()
+    public static string choiceAttackAttempt()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Try to reach the knife near the kitchen entrance to stab the landlady. You might be able to inflict a serious injury, but your back will be open.",
             "B. Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.\n" });
         if (choice == 1)
         {
-            normalEnding.grabKnifeToAttack();
+            return normalEnding.grabKnifeToAttack();
         }
         else
         {
-            //Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.
+            return "WIP"; //Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.
         }
     }
-    public static void choiceNormalEnding()
+    public static string choiceNormalEnding()
     {
         WriteLine("Bonus for finishing the game perfectly! How do you want this confrontation to end?\n\n");
         int choice = choiceTemplate(2, 1, new List<string> {
@@ -282,16 +359,16 @@ public static class ChoiceSelector
             "B. Just kill her! I want to end this nightmare!\n" });
         if (choice == 1)
         {
-            normalEnding.perfectrunEnding();
+            return normalEnding.perfectrunEnding();
         }
         else
         {
-            //Just kill her! I want to end this nightmare!
+            return "WIP"; //Just kill her! I want to end this nightmare!
         }
     }
 
     /* ENDING 1 */
-    public static void choiceNextMove()
+    public static string choiceNextMove()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -300,11 +377,11 @@ public static class ChoiceSelector
         });
         if (choice == 2)
         {
-            Ending1.reportPolice();
+            return Ending1.reportPolice();
         }
         else
         {
-            normalEnding.confrontOldLady();
+            return normalEnding.confrontOldLady();
         }
     }
 
@@ -314,7 +391,7 @@ public static class ChoiceSelector
 |  _| |  \| | | | | ||  \| | |  _    __) |
 | |___| |\  | |_| | || |\  | |_| |  / __/ 
 |_____|_| \_|____/___|_| \_|\____| |_____|*/
-    public static void choiceKateRoom()
+    public static string choiceKateRoom()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -324,14 +401,14 @@ public static class ChoiceSelector
 
         if (choice == 1)
         {
-            Ending2.kateRoomCaught();
+            return Ending2.kateRoomCaught();
         }
         else
         {
-            // Enter the room carefully and inspect the letters.
+            return "WIP"; // Enter the room carefully and inspect the letters.
         }
     }
-    public static void choiceRagedUser()
+    public static string choiceRagedUser()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -341,14 +418,14 @@ public static class ChoiceSelector
 
         if (choice == 2)
         {
-            Ending2.tackleLandlady();
+            return Ending2.tackleLandlady();
         }
         else
         {
-            //Continue listening to the landlady.
+            return "WIP"; //Continue listening to the landlady.
         }
     }
-    public static void choiceEscape()
+    public static string choiceEscape()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -358,14 +435,15 @@ public static class ChoiceSelector
 
         if (choice == 2)
         {
-            Ending2.escapeLandlady();
+            return Ending2.escapeLandlady();
         }
         else
         {
-            //Wrestle with the landlady.
+            wrestleLandlady = true;
+            return Ending2.keepWrestling();
         }
     }
-    public static void choiceRunOrMock()
+    public static string choiceRunOrMock()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -373,13 +451,20 @@ public static class ChoiceSelector
             "B. Mock the landlady and piss her off, there's no way an old lady can catch up to you anyways.\n"
         });
 
-        if (choice == 1)
+        if (wrestleLandlady)
         {
-            Ending2.Finale();
+            return Ending5.Ending5s();
         }
         else
         {
-            Ending5.Ending5s();
+            if (choice == 1)
+            {
+                return Ending2.Finale();
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 
@@ -389,21 +474,21 @@ public static class ChoiceSelector
 |  _| |  \| | | | | ||  \| | |  _    |_ \ 
 | |___| |\  | |_| | || |\  | |_| |  ___) |
 |_____|_| \_|____/___|_| \_|\____| |____/ */
-    public static void choiceExitAttempt()
+    public static string choiceExitAttempt()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
             "Exit the boarding house quietly and report to the authorities.",
             "Confront the landlady about your suspicion\n" });
         if (choice == 1)
         {
-            Ending3.Ending3P3();
+            return Ending3.Ending3P3();
         }
         else
         {
-            normalEnding.confrontOldLady();
+            return normalEnding.confrontOldLady();
         }
     }
-    public static void choiceFollowOrders()
+    public static string choiceFollowOrders()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -411,14 +496,14 @@ public static class ChoiceSelector
             "Follow the landlady's orders\n"});
         if (choice == 2)
         {
-            Ending3.Ending3P4();
+            return Ending3.Ending3P4();
         }
         else
         {
-            Ending2.escapeLandlady();
+            return Ending2.escapeLandlady();
         }
     }
-    public static void choicePanicked()
+    public static string choicePanicked()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -426,14 +511,14 @@ public static class ChoiceSelector
             "Don’t listen to her! She is making stuff up!\n"});
         if (choice == 1)
         {
-            Ending3.Ending3P5();
+            return Ending3.Ending3P5();
         }
         else
         {
-            Ending6.Ending6Part1();
+            return Ending6.Ending6Part1();
         }
     }
-    public static void choiceAskforInvestigation()
+    public static string choiceAskforInvestigation()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -441,11 +526,11 @@ public static class ChoiceSelector
             "Continue framing the landlady, distracting the officer from the investigation.\n" });
         if (choice == 2)
         {
-            Ending3.Ending3Finale();
+            return Ending3.Ending3Finale();
         }
         else
         {
-            Ending6.Ending6Part1();
+            return Ending6.Ending6Part1();
         }
     }
 
@@ -457,7 +542,7 @@ public static class ChoiceSelector
 | |___| |\  | |_| | || |\  | |_| | |__   _|
 |_____|_| \_|____/___|_| \_|\____|    |_|  */
 
-    public static void choiceGrabVeggies()
+    public static string choiceGrabVeggies()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -467,14 +552,14 @@ public static class ChoiceSelector
 
         if (choice == 1)
         {
-            Ending4.youShouldGet();
+            return Ending4.youShouldGet();
         }
         else
         {
-            Ending4.littleRascal();
+            return Ending4.littleRascal();
         }
     }
-    public static void choiceMadalingAraw()
+    public static string choiceMadalingAraw()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -484,14 +569,14 @@ public static class ChoiceSelector
 
         if (choice == 2)
         {
-            Ending4.peepGarden();
+            return Ending4.peepGarden();
         }
         else
         {
-            //Probably just neighborhood cats.
+            return choiceMadalingAraw();//Probably just neighborhood cats.
         }
     }
-    public static void choiceSusGarden()
+    public static string choiceSusGarden()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -501,14 +586,14 @@ public static class ChoiceSelector
 
         if (choice == 1)
         {
-            Ending4.footprintEvidence();
+            return Ending4.footprintEvidence();
         }
         else
         {
-            Ending1.removeEvidence();
+            return Ending1.removeEvidence();
         }
     }
-    public static void choiceEatBreakfast()
+    public static string choiceEatBreakfast()
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
@@ -518,14 +603,14 @@ public static class ChoiceSelector
 
         if (choice == 2)
         {
-            Ending4.susBreakfast();
+            return Ending4.susBreakfast();
         }
         else
         {
-            //I'm already late for work, I should get going
+            return choiceEatBreakfast();//I'm already late for work, I should get going
         }
     }
-    public static void choiceDishes()
+    public static string choiceDishes()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -535,14 +620,14 @@ public static class ChoiceSelector
 
         if (choice == 1)
         {
-            Ending4.poisonedFood();
+            return Ending4.poisonedFood();
         }
         else
         {
-            //This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late.
+            return choiceDishes();//This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late.
         }
     }
-    public static void choiceTrytoKill()
+    public static string choiceTrytoKill()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -552,20 +637,13 @@ public static class ChoiceSelector
 
         if (choice == 1 || choice == 2)
         {
-            Ending4.Finale();
+            return Ending4.Finale();
+        }
+        else
+        {
+            return "Invalid Action: Only choose between 1 and 2";
         }
     }
-
-
-
-    /* ENDING 5
- _____ _   _ ____ ___ _   _  ____   ____  
-| ____| \ | |  _ \_ _| \ | |/ ___| | ___| 
-|  _| |  \| | | | | ||  \| | |  _  |___ \ 
-| |___| |\  | |_| | || |\  | |_| |  ___) |
-|_____|_| \_|____/___|_| \_|\____| |____/ */
-
-
     /* ENDING 6
  _____ _   _ ____ ___ _   _  ____    __   
 | ____| \ | |  _ \_ _| \ | |/ ___|  / /_  
@@ -573,7 +651,7 @@ public static class ChoiceSelector
 | |___| |\  | |_| | || |\  | |_| | | (_) |
 |_____|_| \_|____/___|_| \_|\____|  \___/ */
 
-    public static void choiceAngrytoPolice()
+    public static string choiceAngrytoPolice()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
@@ -582,22 +660,57 @@ public static class ChoiceSelector
         });
         if (choice == 2)
         {
-            Ending6.angryToOfficer();
+            return Ending6.angryToOfficer();
         }
         else
         {
-            Ending3.Ending3Finale();
+            return Ending3.Ending3Finale();
         }
     }
-
-
     private static int choiceTemplate(int maxChoice, int correctAnswer, List<string> choices)
     {
-        for (int x = 0; x < maxChoice; x++)
+        int selectedIndex = 0;
+        int choiceStartRow = Console.CursorTop;
+
+        ConsoleKeyInfo key;
+        bool choiceMade = false;
+
+        do
         {
-            WriteLine($"{choices[x]}");
-        }
-        return GetChoice(maxChoice);
+            Console.SetCursorPosition(0, choiceStartRow);
+            for (int i = 0; i < maxChoice; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                WriteLine(choices[i]);
+                Console.ResetColor();
+            }
+
+            key = Console.ReadKey();
+            if (!choiceMade)
+            {
+                if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (key.Key == ConsoleKey.DownArrow && selectedIndex < maxChoice - 1)
+                {
+                    selectedIndex++;
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    choiceMade = true; // Exit the loop when Enter is pressed
+                }
+            }
+        } while (!choiceMade);
+
+        Console.SetCursorPosition(0, choiceStartRow + maxChoice); // Set cursor position below the choices
+        Console.WriteLine(); // Move to the next line
+
+        return selectedIndex + 1;
     }
     private static int GetChoice(int maxChoice)
     {
@@ -615,5 +728,10 @@ public static class ChoiceSelector
             }
         }
         return choice;
+    }
+    static void say(string message)
+    {
+        WriteLine($"{message}\n");
+        ReadKey();
     }
 }
