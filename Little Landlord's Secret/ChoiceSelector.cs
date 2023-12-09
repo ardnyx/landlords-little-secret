@@ -20,6 +20,8 @@ public static class ChoiceSelector
     public static bool destroyEnvelope { get; private set; } = false;
     public static bool wrestleLandlady { get; private set; } = false;
     public static bool map { get; private set; } = false;
+    public static bool earlyStab { get; private set; } = false;
+
     /* ALTERNATIVE ENDING */
     public static string subtleKnock()
     {
@@ -39,7 +41,6 @@ public static class ChoiceSelector
             WriteLine("\nYou need to do something about the noise!\n");
             ReadKey();
             return alternativeRoute.outsideDoor();
-            //You wake up to three loud knocks coming from outside.
         }
     }
     /* NORMAL ENDING (PERFECT RUN)
@@ -319,7 +320,8 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //One stab, and we’re done with this nightmare!
+            earlyStab = true;
+            return normalEnding.attackAttempt();
         }
     }
     public static string choiceInvestigateFurther()
@@ -347,7 +349,7 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.
+            return Ending6.Greed();
         }
     }
     public static string choiceNormalEnding()
@@ -421,7 +423,8 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //Continue listening to the landlady.
+            wrestleLandlady = true;
+            return Ending2.continueListening();
         }
     }
     public static string choiceEscape()
@@ -675,7 +678,6 @@ public static class ChoiceSelector
         do
         {
             Console.SetCursorPosition(0, choiceStartRow);
-
             for (int i = 0; i < maxChoice; i++)
             {
                 if (i == selectedIndex)
@@ -683,16 +685,20 @@ public static class ChoiceSelector
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
-
                 Console.Write(choices[i]);
                 if (i == selectedIndex)
                 {
                     Console.ResetColor();
                 }
-
-                Console.SetCursorPosition(0, choiceStartRow + i + 1);
+                int nextCursorPosition = choiceStartRow + i + 1;
+                if (nextCursorPosition >= 0 && nextCursorPosition < Console.BufferHeight)
+                {
+                    Console.SetCursorPosition(0, nextCursorPosition);
+                }
             }
+
             key = Console.ReadKey();
+
             if (!choiceMade)
             {
                 if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
@@ -708,16 +714,12 @@ public static class ChoiceSelector
                     choiceMade = true;
                 }
             }
-            Console.SetCursorPosition(0, choiceStartRow + maxChoice);
-
             Console.ResetColor();
-
         } while (!choiceMade);
         Console.SetCursorPosition(0, choiceStartRow + maxChoice);
         Console.WriteLine();
         return selectedIndex + 1;
     }
-
     private static int GetChoice(int maxChoice)
     {
         int choice;

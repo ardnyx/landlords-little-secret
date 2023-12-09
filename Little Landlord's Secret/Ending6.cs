@@ -17,6 +17,12 @@ namespace Little_Landlord_s_Secret
             say($"Police Officer: Don't worry, sir, we'll serve justice to those who deserve it..");
             return ChoiceSelector.choiceAngrytoPolice();
         }
+        public static string Greed()
+        {
+            say($" (From the greed that you have exhibited, you forgot about the noises and didn't notice that the police were called.\n" +
+                $" They saw you as you were torturing the already dead landlord, getting you arrested and charged for murder.)");
+            return "Ending 6 Finale";
+        }
         public static string angryToOfficer()
         {
             say($"Police Officer: I think you've had enough time to sort yourself out. You're just disrespecting us at this point. \n" +

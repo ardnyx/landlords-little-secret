@@ -38,6 +38,15 @@ public class Ending2
         say($"Landlady: Pay for what? You’re both-");
         return ChoiceSelector.choiceRagedUser();
     }
+    public static string continueListening()
+    {
+        say($" (The landlady gets irritated with you poking your nose into her stuff, forcing her to grab and get in a fight with you.");
+        say($" (You and the landlady get into a fight. While in the middle of fighting, {Program.player} gets surprised with the strength of the landlady despite her old age.");
+        say($"{Program.player}: (Grunting) You're pretty strong for a woman of your age.");
+        say($"Landlady: (Laughs) How did you think I killed your grandfather then?");
+        say($"{Program.player}: You should go to hell!");
+        return keepWrestling();
+    }
     public static string tackleLandlady()
     {
         say($"(As {Program.player} tackled the landlady, {Program.player} didn’t expect the strength from a woman in their sixties. She’s insanely strong!)");
@@ -49,7 +58,7 @@ public class Ending2
     public static string keepWrestling()
     {
         say($" (You kept on wrestling against the landlady.)");
-        say($" ((You can't keep going on with this!)");
+        say($" (You can't keep going on with this!)");
         Clear();
         for (int i = 0; i < 3; i++)
         {
