@@ -22,7 +22,9 @@ namespace Little_Landlord_s_Secret
             declinedPhone = true;
             say($" (Out of fear and suspicion, you declined the phone call.)");
             say($".");
+            ForegroundColor = ConsoleColor.Green;
             say($" ** 1 unread message **");
+            ResetColor();
             return normalEnding.ReadEnvelope();
         }
         public static string GoHome()

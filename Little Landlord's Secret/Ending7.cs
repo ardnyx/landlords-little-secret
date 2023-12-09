@@ -98,8 +98,6 @@ namespace Little_Landlord_s_Secret
             say($" (You decided to confront the landlady in the kitchen but you don't have anything on hand that can help you defend yourself)");
             return ChoiceSelector.choiceConfrontLady();
         }
-
-
         public static string pullKnife()
         {
             say($"{Program.player}: Ms. Helen, I need to talk to you about something. I saw something in your living room just now.");
@@ -167,7 +165,6 @@ namespace Little_Landlord_s_Secret
             WriteLine($"{message}\n");
             while (ReadKey(true).Key != ConsoleKey.Spacebar)
             {
-                // Continue consuming keys until Enter is pressed
             }
         }
     }
