@@ -58,7 +58,8 @@ namespace Little_Landlord_s_Secret
                 default:
                     break;
             }
-
+            Clear();
+            //ChoiceSelector.choiceInsideHouse();
             normalEnding.StoryIntroduction();
         }
         public static string GetInput(string input)

@@ -9,6 +9,11 @@ using System.Runtime.InteropServices;
 
 public class Ending2
 {
+   /* public static void Ending2Map()
+    {
+        MapController gameController = new MapController();
+        gameController.StartGame();
+    }*/
     public static string kateRoom()
     {
         say($"You decided to go into Kate's room. As you open the door, piles of letters come falling down from the shelves. A messy room, it even looks like no one has lived there for a long time.");

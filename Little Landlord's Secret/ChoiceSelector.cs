@@ -235,6 +235,7 @@ public static class ChoiceSelector
         }
         else if (choice == 3)
         {
+            //Ending2.Ending2Map();
             result = Ending2.kateRoom();
         }
         else
