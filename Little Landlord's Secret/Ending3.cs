@@ -81,10 +81,12 @@ public static class Ending3
         return "Ending 3 Finale";
 
     }
-    static string say(string message)
+    static void say(string message)
     {
         WriteLine($"{message}\n");
-        ReadKey();
-        return message;
+        while (ReadKey(true).Key != ConsoleKey.Spacebar)
+        {
+            // Continue consuming keys until Enter is pressed
+        }
     }
 }

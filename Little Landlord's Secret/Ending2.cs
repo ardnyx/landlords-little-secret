@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 using Little_Landlord_s_Secret;
+using System.Runtime.InteropServices;
 
-public static class Ending2
+public class Ending2
 {
     public static string kateRoom()
     {
@@ -74,10 +75,12 @@ public static class Ending2
             $"Both the you and the landlady slowly lose consciousness until sirens and flashing lights arrive at the scene.)");
         return "Ending 5";
     }
-    static string say(string message)
+    static void say(string message)
     {
         WriteLine($"{message}\n");
-        ReadKey();
-        return message;
+        while (ReadKey(true).Key != ConsoleKey.Spacebar)
+        {
+            // Continue consuming keys until Enter is pressed
+        }
     }
 }

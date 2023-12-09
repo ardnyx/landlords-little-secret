@@ -26,11 +26,13 @@ namespace Little_Landlord_s_Secret
                 $"The landlady is still free, and your incarceration buried the the doubts that are lingering around that boarding house.)");
             return "Ending 6 Finale";
         }
-        static string say(string message)
+        static void say(string message)
         {
             WriteLine($"{message}\n");
-            ReadKey();
-            return message;
+            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            {
+                // Continue consuming keys until Enter is pressed
+            }
         }
     }
 }

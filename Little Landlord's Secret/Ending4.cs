@@ -96,11 +96,13 @@ namespace Little_Landlord_s_Secret
                 $"The tenants, unaware of the sinister truth that lurked within their walls, continued their daily lives, oblivious to the darkness that is reigning among them.)");
             return "Ending 4 Finale";
         }
-        static string say(string message)
+        static void say(string message)
         {
             WriteLine($"{message}\n");
-            ReadKey();
-            return message;
+            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            {
+                // Continue consuming keys until Enter is pressed
+            }
         }
     }
 }

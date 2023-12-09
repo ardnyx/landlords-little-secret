@@ -21,11 +21,13 @@ namespace Little_Landlord_s_Secret
             say($"You were able to inform the authorities on time, without arousing any suspicion from the landlady, you were able to get justice for your grandfather without being harmed, you were rewarded by your city for your bravery and were thanked by the families of the other victims");
             return "Ending 1 Finale";
         }
-        static string say(string message)
+        static void say(string message)
         {
             WriteLine($"{message}\n");
-            ReadKey();
-            return message;
+            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            {
+                // Continue consuming keys until Enter is pressed
+            }
         }
     }
 }

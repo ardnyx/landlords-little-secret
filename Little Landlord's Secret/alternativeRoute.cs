@@ -68,11 +68,13 @@ namespace Little_Landlord_s_Secret
             say($"[Filtered voice] You have to understand that this isn't some sick joke. We have already failed, you need to do your part as the grandchild, only you can do it.");
             return ChoiceSelector.choiceLetterContent();
         }
-        static string say(string message)
+        static void say(string message)
         {
             WriteLine($"{message}\n");
-            ReadKey();
-            return message;
+            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            {
+                // Continue consuming keys until Enter is pressed
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ public static class ChoiceSelector
     public static bool throwPhone { get; private set; } = false;
     public static bool destroyEnvelope { get; private set; } = false;
     public static bool wrestleLandlady { get; private set; } = false;
+    public static bool map { get; private set; } = false;
     /* ALTERNATIVE ENDING */
     public static string subtleKnock()
     {
@@ -120,8 +121,8 @@ public static class ChoiceSelector
         {
             choices = new List<string>
             {
-                "I guess I’ll try to go, I need to get gramps’ belongings from there anyway. I doubt there will be anything to see.",
-                "This is some crazy prank, my grandfather ran away; he had dementia and the landlady was already nice enough to dedicate her time to taking care of him. She cried so much when she told us the news!\n"
+                "A. I guess I’ll try to go, I need to get gramps’ belongings from there anyway. I doubt there will be anything to see.",
+                "B. This is some crazy prank, my grandfather ran away; he had dementia and the landlady was already nice enough to dedicate her time to taking care of him. She cried so much when she told us the news!\n"
             };
         }
         int choice = choiceTemplate(choices.Count, 2, choices);
@@ -207,10 +208,6 @@ public static class ChoiceSelector
             "B. Confirm her guess, lest she suspects something.\n" });
         if (choice == 2)
         {
-            if (clearConsole)
-            {
-                Clear();
-            }
             return normalEnding.confirmGuess();
         }
         else
@@ -226,22 +223,24 @@ public static class ChoiceSelector
             "B. Follow her into the kitchen and offer some help.",
             "C. Go to [Tenant 1]’s room, perhaps you can ask her some things.",
             "D. Go to [Tenant 2]’s room, his weird tendencies may help reveal some things.\n" });
+        string result = string.Empty;
         if (choice == 1)
         {
-            return normalEnding.sitLivingRoom();
+            result = normalEnding.sitLivingRoom();
         }
         else if (choice == 2)
         {
-            return Ending4.helpLandlady();
+            result = Ending4.helpLandlady();
         }
         else if (choice == 3)
         {
-            return Ending2.kateRoom();
+            result = Ending2.kateRoom();
         }
         else
         {
-            return Ending4.tenant2Room();
+            result = Ending4.tenant2Room();
         }
+        return result;
     }
     public static string choiceSomethingHollow()
     {
@@ -355,7 +354,7 @@ public static class ChoiceSelector
     {
         WriteLine("Bonus for finishing the game perfectly! How do you want this confrontation to end?\n\n");
         int choice = choiceTemplate(2, 1, new List<string> {
-            "A. Tie the landlady up, and ask her where your grandfather’s remains are as well as your doubts." +
+            "A. Tie the landlady up, and ask her where your grandfather’s remains are as well as your doubts.",
             "B. Just kill her! I want to end this nightmare!\n" });
         if (choice == 1)
         {
@@ -463,7 +462,7 @@ public static class ChoiceSelector
             }
             else
             {
-                return "";
+                return Ending2.Finale();
             }
         }
     }
@@ -671,13 +670,12 @@ public static class ChoiceSelector
     {
         int selectedIndex = 0;
         int choiceStartRow = Console.CursorTop;
-
         ConsoleKeyInfo key;
         bool choiceMade = false;
-
         do
         {
             Console.SetCursorPosition(0, choiceStartRow);
+
             for (int i = 0; i < maxChoice; i++)
             {
                 if (i == selectedIndex)
@@ -685,10 +683,15 @@ public static class ChoiceSelector
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
-                WriteLine(choices[i]);
-                Console.ResetColor();
-            }
 
+                Console.Write(choices[i]);
+                if (i == selectedIndex)
+                {
+                    Console.ResetColor();
+                }
+
+                Console.SetCursorPosition(0, choiceStartRow + i + 1);
+            }
             key = Console.ReadKey();
             if (!choiceMade)
             {
@@ -702,16 +705,19 @@ public static class ChoiceSelector
                 }
                 else if (key.Key == ConsoleKey.Enter)
                 {
-                    choiceMade = true; // Exit the loop when Enter is pressed
+                    choiceMade = true;
                 }
             }
+            Console.SetCursorPosition(0, choiceStartRow + maxChoice);
+
+            Console.ResetColor();
+
         } while (!choiceMade);
-
-        Console.SetCursorPosition(0, choiceStartRow + maxChoice); // Set cursor position below the choices
-        Console.WriteLine(); // Move to the next line
-
+        Console.SetCursorPosition(0, choiceStartRow + maxChoice);
+        Console.WriteLine();
         return selectedIndex + 1;
     }
+
     private static int GetChoice(int maxChoice)
     {
         int choice;
@@ -732,6 +738,9 @@ public static class ChoiceSelector
     static void say(string message)
     {
         WriteLine($"{message}\n");
-        ReadKey();
+        while (ReadKey(true).Key != ConsoleKey.Spacebar)
+        {
+            // Continue consuming keys until Enter is pressed
+        }
     }
 }

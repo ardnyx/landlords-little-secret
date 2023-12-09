@@ -18,11 +18,13 @@ namespace Little_Landlord_s_Secret
             say("You died full of regrets.");
             return "Ending 5 Finale";
         }
-        static string say(string message)
+        static void say(string message)
         {
             WriteLine($"{message}\n");
-            ReadKey();
-            return message;
+            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            {
+                // Continue consuming keys until Enter is pressed
+            }
         }
     }
 }
