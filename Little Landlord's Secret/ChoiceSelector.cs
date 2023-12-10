@@ -235,7 +235,6 @@ public static class ChoiceSelector
         }
         else if (choice == 3)
         {
-            //Ending2.Ending2Map();
             result = Ending2.kateRoom();
         }
         else
@@ -266,9 +265,9 @@ public static class ChoiceSelector
     public static string choiceInvestigateSofa()
     {
         int choice = choiceTemplate(3, 2, new List<string> {
-            "A. Act composed, this basically confirms that something dark is happening here. But this isn’t my grandfather’s fingernail at all!\n",
+            "A. Act composed, this basically confirms that something dark is happening here.\n",
             "B. Something dark is happening here. I need to confront the landlady about this.\n",
-            "C. Hm? Ah this fingernail might be from [Tenant 2], I've heard he does disgusting things all the time. I'll inform the landlady just in case.\n" });
+            "C. Hm? Ah this fingernail might be from Jone, I've heard he does disgusting things all the time. I'll inform the landlady just in case.\n" });
         if (choice == 2)
         {
             return normalEnding.confrontOldLady();
@@ -717,7 +716,7 @@ public static class ChoiceSelector
             }
             ResetColor();
         } while (!choiceMade);
-        SetCursorPosition(0, choiceStartRow + maxChoice);
+        SetCursorPosition(0, Math.Min(choiceStartRow + maxChoice, Console.BufferHeight - 1) + 1);
         WriteLine();
         return selectedIndex + 1;
     }

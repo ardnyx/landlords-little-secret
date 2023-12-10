@@ -15,6 +15,19 @@ namespace Little_Landlord_s_Secret
         {
             player = GetInput("Please Enter Your Name: ");
             Clear();
+            Write($"\nAh. So you are ");
+            ForegroundColor = ConsoleColor.Red;
+            Write($"{player}");
+            ResetColor();
+            Write(".");
+            ReadKey();
+            Write("\n\nOkay! I will ");
+            ForegroundColor = ConsoleColor.Red;
+            Write("remember you");
+            ResetColor();
+            Write(".");
+            ReadKey();
+            Clear();
             string prompt = $@" 
               
  _____                                                                    _____ 
@@ -59,7 +72,6 @@ namespace Little_Landlord_s_Secret
                     break;
             }
             Clear();
-            //ChoiceSelector.choiceInsideHouse();
             normalEnding.StoryIntroduction();
         }
         public static string GetInput(string input)

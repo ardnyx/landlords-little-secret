@@ -10,8 +10,7 @@ namespace Little_Landlord_s_Secret
 {
     internal class Ending4
     {
-
-       public static string helpLandlady()
+        public static string helpLandlady()
         {
             say($"Landlady: Sure I could use some help? Well, will you please get some vegetables from my garden? I need them for the thing that I'm cooking for you");
             return ChoiceSelector.choiceGrabVeggies();
@@ -20,9 +19,180 @@ namespace Little_Landlord_s_Secret
         {
             say($"Landlady: I want you to fetch me some corns from the garden. I remembered planting some a few weeks ago, check them out if they're already ripe.");
             say($"{Program.player}:Alright then.");
-            say($"(While you were harvesting, something odd caught your eye which doesn't look like a... corn..?");
-            say($"{Program.player}: This.. is..");
-            return ChoiceSelector.choiceInvestigateSofa();
+            Clear();
+            Title = "You are Currently in the Garden";
+            int x = 7, y = 10;
+            string[,] map = {
+           { "|", "-", "-", "-", "-", "-", "-",  "-",  "-", "-", "-", "-", "-", "-", "|" },
+           { "|", "O", " ", "O", " ", "O", " ",  " ",  " ", "O", " ", "O", " ", "O", "|",},
+           { "|", " ", " ", " ", " ", " ", " ",  " ",  " ", " ", " ", " ", " ", " ", "|",},
+           { "|", "O", " ", "O", " ", "O", " ",  " ",  " ", "O", " ", "O", " ", "O", "|",},
+           { "|", " ", " ", " ", " ", " ", " ",  " ",  " ", " ", " ", " ", " ", " ", "|",},
+           { "|", "O", " ", "O", " ", "O", " ",  " ",  " ", "O", " ", "O", " ", "O", "|",},
+           { "|", " ", " ", " ", " ", " ", " ",  " ",  " ", " ", " ", " ", " ", " ", "|",},
+           { "|", "O", " ", "O", " ", "O", " ",  " ",  " ", "O", " ", "O", " ", "O", "|",},
+           { "|", " ", " ", " ", " ", " ", " ",  " ",  " ", " ", " ", " ", " ", " ", "|",},
+           { "|", "O", " ", "O", " ", "O", " ",  " ",  " ", "O", " ", "O", " ", "O", "|",},
+           { "|", " ", " ", " ", " ", " ", " ",  " ",  " ", " ", " ", " ", " ", " ", "|",},
+           { "|", "^", "^", "^", "^", "^", "^",  "^",  "^", "^", "^", "^", "^", "^", "|" },
+       };
+            while (true)
+            {
+                Clear();
+                map[y, x] = "X";
+                int Rows = map.GetLength(0);
+                int Cols = map.GetLength(1);
+                if (map[2, 13] == "X")
+                {
+                    say($"(While you were harvesting, something odd caught your eye which doesn't look like a... corn..?");
+                    say($"{Program.player}: This.. is..");
+                    return ChoiceSelector.choiceInvestigateSofa();
+
+                }
+                else
+                {
+                    for (int j = 0; j < Rows; j++)
+                    {
+                        for (int i = 0; i < Cols; i++)
+                        {
+                            string element = map[j, i];
+                            SetCursorPosition(i, j);
+                            Write(element + "\t");
+                        }
+                    }
+                    WriteLine("\n\nWalk beside the Corn to Collect them");
+                    WriteLine("Use the Arrow Keys to Move");
+                    WriteLine("\nLegend:");
+                    WriteLine("O = Corn to be Harvested");
+                    WriteLine("* = Corn is Harvested");
+                    WriteLine("X = Player Location");
+                    WriteLine("| = Fence");
+                    WriteLine("- = Fence");
+                    WriteLine("^ = Fence");
+                    WriteLine();
+                    ConsoleKeyInfo keyInfo = ReadKey(true);
+                    ConsoleKey key = keyInfo.Key;
+                    switch (key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            if (0 < y - 2 && y - 2 < Rows)
+                            {
+                                if (map[y - 2, x] == " ")
+                                {
+                                    map[y, x] = " ";
+                                    y -= 2;
+                                    if (map[y - 1, x] == "O" && map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+                                    }
+                                    else if (map[y - 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+                                    else if (map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+                                    }
+                                }
+                            }
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (0 < y + 2 && y + 2 < Rows)
+                            {
+                                if (map[y + 2, x] == " ")
+                                {
+                                    map[y, x] = " ";
+                                    y += 2;
+                                    if (map[y - 1, x] == "O" && map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+                                    else if (map[y - 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+
+                                    else if (map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+                                }
+                            }
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            if (0 < x - 2 && x - 2 < Cols)
+                            {
+                                if (map[y, x - 2] == " ")
+                                {
+                                    map[y, x] = " ";
+                                    x -= 2;
+                                    if (map[y - 1, x] == "O" && map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+                                    else if (map[y - 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+
+                                    else if (map[y + 1, x] == "O")
+                                    {
+                                        map[y - 1, x] = "*";
+                                        map[y + 1, x] = "*";
+
+                                    }
+
+                                }
+                            }
+                            break;
+
+                        case ConsoleKey.RightArrow:
+                            if (0 < x + 2 && x + 2 < Cols)
+                            {
+                                map[y, x] = " ";
+
+                                x += 2;
+
+                                if (map[y - 1, x] == "O" && map[y + 1, x] == "O")
+                                {
+                                    map[y - 1, x] = "*";
+                                    map[y + 1, x] = "*";
+
+                                }
+                                else if (map[y - 1, x] == "O")
+                                {
+                                    map[y - 1, x] = "*";
+                                    map[y + 1, x] = "*";
+
+                                }
+
+                                else if (map[y + 1, x] == "O")
+                                {
+                                    map[y - 1, x] = "*";
+                                    map[y + 1, x] = "*";
+
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
         public static string tenant2Room()
         {
@@ -39,8 +209,8 @@ namespace Little_Landlord_s_Secret
         public static string littleRascal()
         {
             Clear();
-            say($"Landlady: Oh you little rascal! You're already  an adult but you're still scared of some dirt! \n" +
-                $"Just sit in the living room and wait then, lunch will be ready in a while.");
+            say($"Landlady: Oh you little rascal! You're already an adult but you're still scared of some dirt! \n" +
+                $"          Just sit in the living room and wait then, lunch will be ready in a while.");
             return normalEnding.sitLivingRoom();
         }
         public static string doesntSuspect()
