@@ -60,7 +60,8 @@ namespace Little_Landlord_s_Secret
             }
             Clear();
             //ChoiceSelector.choiceInsideHouse();
-            normalEnding.StoryIntroduction();
+            //normalEnding.StoryIntroduction();
+            Ending4.youShouldGet();
         }
         public static string GetInput(string input)
         {
