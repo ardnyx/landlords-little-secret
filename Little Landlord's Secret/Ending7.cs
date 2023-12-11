@@ -75,7 +75,8 @@ namespace Little_Landlord_s_Secret
             say($"Landlady: I just wanna say, I’m very sorry for what happened. I will take responsibility and provide as much compensation that I can handle.");
             say($"{Program.player}: We know that you’re not at fault, we already talked about it when the police were first involved. We are also at fault, we prioritized our careers more instead of taking care of the person who helped all of us establish ourselves.");
             say($"Landlady: Alright. Come in, come in! I’ll prepare some food for you. You can feel at home, {Program.player}.");
-            return ChoiceSelector.choiceInsideHouse();
+            ChoiceSelector.choiceInsideHouse();
+            return "";
         }
 
         public static string sitLivingRoom()

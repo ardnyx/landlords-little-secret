@@ -6,30 +6,32 @@ using System.Threading.Tasks;
 using static System.Console;
 using Little_Landlord_s_Secret;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 public class Ending2
 {
-    public static string kateRoom()
+    public static string kateMap()
     {
-        say($"You decided to go into Kate's room. As you open the door, piles of letters come falling down from the shelves. A messy room, it even looks like no one has lived there for a long time.");
-        return ChoiceSelector.choiceKateRoom();
+        Game currentGame = new Game();
+        currentGame.StartkateRoom();
+        return "";
     }
-
     public static string kateRoomCaught()
     {
+        SetCursorPosition(0, 0);
+        Clear();
         say($"(You hear the landlady’s footsteps coming towards you, as if she was trying to catch a thief.)");
         say($"Landlady: {Program.player}, what are you up to?");
         say($"{Program.player}: Nothing, I just saw Kate’s room filled with letters. Does she ever open them? It’s gonna take her a while to finish them all!");
         say($"Landlady: And why? That’s none of your business! Don’t mess with stuff you don’t own. Clean this place up!");
-        say($"{Program.player}: Well, I just wanted to ask her about some things about this place.\n");
-        say($"(The landlady gets angry, you probably shouldn’t have messed with her stuff. Being nervous, you leave some letters at the door. She tells you to go back to the sofa and wait. As you sat, you felt something hollow.)\n");
+        say($"(The landlady gets angry. Being nervous, you leave some letters at the door. She tells you to go back to the sofa and wait. As you sat, you felt something hollow.)\n");
         return ChoiceSelector.choiceSomethingHollow();
     }
     public static string investigateSofa()
     {
         say($"You did actually manage to find something suspicious in those hollow spots. There, you found something that looks like scratches from a person getting dragged! \n" +
             $"There were also bloodstains and even a whole fingernail under the sofa! You get shocked, traumatized even! While looking into the sofa, you hear the landlady sprinting towards you.");
-        say($"Landlady: You are really getting on my nerves. What the hell are you doing now {Program.player}?!");
+        say($"Landlady: AND What the hell are you doing now {Program.player}?!");
         say($"{Program.player}: Is this a body? What the hell happens in this place??!! What did you do to my grandfather?");
         say($"Landlady: Oh that old bag? I don’t know. Did you check who was in the sofa?");
         say($"{Program.player}: Oh my god! What did you do to him? You’re so sick! So sick!");

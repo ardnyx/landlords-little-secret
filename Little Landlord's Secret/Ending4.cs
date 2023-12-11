@@ -194,6 +194,12 @@ namespace Little_Landlord_s_Secret
                 }
             }
         }
+        public static string joneMap()
+        {
+            Game currentGame = new Game();
+            currentGame.StartjoneRoom();
+            return "";
+        }
         public static string tenant2Room()
         {
             Clear();
@@ -254,6 +260,15 @@ namespace Little_Landlord_s_Secret
         {
             say($"Halfway through the meal you feel something in your stomach, An aching pain."); ReadKey(); Write($"THE LANDLADY POISONED THE FOOD!");
             return ChoiceSelector.choiceTrytoKill();
+        }
+        public static string Finale2()
+        {
+            Clear();
+            say($" (You underestimated the mental fortitude of the psychotic landlady.");
+            say($"  She never cared about her own well-being and instead just excited to torment someone.");
+            say($"  Seeing you go for mutual destruction is the biggest mistake for yourself,");
+            say($"  and the ultimate death for her.)");
+            return "Finale2";
         }
         public static string Finale()
         {

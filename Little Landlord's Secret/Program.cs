@@ -13,6 +13,8 @@ namespace Little_Landlord_s_Secret
         public static string player;
         static void Main(string[] args)
         {
+            Title = "Landlord's Little Secret";
+            CursorVisible = false;
             player = GetInput("Please Enter Your Name: ");
             Clear();
             Write($"\nAh. So you are ");
@@ -55,7 +57,7 @@ namespace Little_Landlord_s_Secret
   CONTROLS:
   (Press ENTER to confirm)
   (Press SPACEBAR to proceed to the next dialogue)
-  (Use UP or DOWN arrow keys to navigate between choices)
+  (Type 1,2,3 or 4 to navigate between choices)
 ";
             List<string> options = new List<string> { "Play", "Exit" };
             Menu mainMenu = new Menu(prompt, options);
@@ -73,6 +75,7 @@ namespace Little_Landlord_s_Secret
             }
             Clear();
             normalEnding.StoryIntroduction();
+            //ChoiceSelector.choiceInsideHouse();
         }
         public static string GetInput(string input)
         {
