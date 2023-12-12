@@ -68,7 +68,7 @@ public static class ChoiceSelector
     {
         int choice = choiceTemplate(2, 2, new List<string> {
             "A. Run away from the man, what he's holding might be dangerous!",
-            "B. **Ask him about the thing that he's trying to give you as well as his identity.\n" });
+            "B. Ask him about the thing that he's trying to give you as well as his identity.\n" });
         if (choice == 2)
         {
             return normalEnding.AskAnonymousMan();
@@ -251,17 +251,12 @@ public static class ChoiceSelector
     }
     public static string choiceSomethingHollow()
     {
-        int choice = choiceTemplate(3, 1, new List<string> {
-            "A. There must be a reason why there’s some hollow spots in this sofa. I need to look into this more.",
-            "B. This is a very old sofa after all, I just take a look and if there’s nothing suspicious, then it’s just me being paranoid.",
-            "C. It’s nothing, if there’s anything suspicious, it has to be in my grandfather’s room, not in some place like the living room sofa.\n" });
+        int choice = choiceTemplate(2, 1, new List<string> {
+            "A. Huh? I need to look into this more.",
+            "B. If there’s anything suspicious, it has to be in my grandfather’s room, not in some place like the living room sofa.\n" });
         if (choice == 1)
         {
             return normalEnding.investigateSofa();
-        }
-        else if (choice == 2)
-        {
-            return "WIP"; //This is a very old sofa after all, I just take a look and if there’s nothing suspicious, then it’s just me being paranoid
         }
         else
         {
@@ -290,7 +285,7 @@ public static class ChoiceSelector
     public static string choiceConfrontLady()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
-            "A. Let’s see who can pull out a knife first. She’s senile, being a psychopath won’t help her.",
+            "A. She’s senile, being a psychopath won’t help her.",
             "B. This… I need more time to prepare.\n" });
         if (choice == 1)
         {
@@ -298,7 +293,21 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //This… I need more time to prepare.
+            return normalEnding.moretime();
+        }
+    }
+    public static string moretime()
+    {
+        int choice = choiceTemplate(2, 1, new List<string> {
+            "A. Fine. Let's go.",
+            "B. Confront Ms. Helen about what you saw.\n" });
+        if (choice == 2)
+        {
+            return normalEnding.pullKnife();
+        }
+        else
+        {
+            return normalEnding.attackAttempt();
         }
     }
     public static string choiceHearOtherSide()
@@ -312,7 +321,7 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //I don’t need to walk around the bush, she’s definitely some type of crazy.
+            return normalEnding.listenToLady(); //I don’t need to walk around the bush, she’s definitely some type of crazy.
         }
     }
     public static string choiceContinueTalking()
@@ -347,7 +356,7 @@ public static class ChoiceSelector
     public static string choiceAttackAttempt()
     {
         int choice = choiceTemplate(2, 1, new List<string> {
-            "A. Try to reach the knife near the kitchen entrance to stab the landlady. You might be able to inflict a serious injury, but your back will be open.",
+            "A. Attack Mrs. Helen. You might be able to inflict a serious injury, but your back will be open.",
             "B. Take advantage of the time and smash her head yourself, regardless of her disgusting pain tolerance, she will be dizzy.\n" });
         if (choice == 1)
         {
@@ -360,7 +369,6 @@ public static class ChoiceSelector
     }
     public static string choiceNormalEnding()
     {
-        WriteLine("Bonus for finishing the game perfectly! How do you want this confrontation to end?\n\n");
         int choice = choiceTemplate(2, 1, new List<string> {
             "A. Tie the landlady up, and ask her where your grandfather’s remains are as well as your doubts.",
             "B. Just kill her! I want to end this nightmare!\n" });
@@ -370,13 +378,25 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; //Just kill her! I want to end this nightmare!
+            if (Map.headlock)
+            {
+                return Ending6.Greed();
+            }
+            else if (Map.rustyknife)
+            {
+                return Ending6.Greed();
+            }
+            else
+            {
+                return "normal ending";
+            }
         }
     }
 
     /* ENDING 1 */
     public static string choiceNextMove()
     {
+        say(" (You have to plan for your next move. What do you want to do next?");
         int choice = choiceTemplate(2, 2, new List<string>
         {
             "A. Confront the landlord about what you saw.",
@@ -412,7 +432,7 @@ public static class ChoiceSelector
         }
         else
         {
-            return "WIP"; // Enter the room carefully and inspect the letters.
+            return "WIP";
         }
     }
     public static string choiceRagedUser()
@@ -443,7 +463,7 @@ public static class ChoiceSelector
 
         if (choice == 2)
         {
-            return Ending2.escapeLandlady();
+            return Ending2.escapelandlady();
         }
         else
         {
@@ -508,7 +528,7 @@ public static class ChoiceSelector
         }
         else
         {
-            return Ending2.escapeLandlady();
+            return Ending2.escapelandlady();
         }
     }
     public static string choicePanicked()
@@ -581,15 +601,24 @@ public static class ChoiceSelector
         }
         else
         {
-            return choiceMadalingAraw();//Probably just neighborhood cats.
+            return Ending4.neighborhoodcats();
         }
+    }
+    public static string fine()
+    {
+        int choice = choiceTemplate(1, 1, new List<string>
+        {
+            "A. Fine.\n"
+        });
+
+        return Ending4.peepGarden();
     }
     public static string choiceSusGarden()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
             "A. Hurry up and run back to room before landlord sees me here.",
-            "B. I should leave no evidence i was here and go to my room\n"
+            "B. I should leave no evidence that I was here and go to my room\n"
         });
 
         if (choice == 1)
@@ -605,8 +634,8 @@ public static class ChoiceSelector
     {
         int choice = choiceTemplate(2, 2, new List<string>
         {
-            "A. I'm already late for work i should get going",
-            "B. That's great! i'll be down in a bit\n"
+            "A. I should leave this house.",
+            "B. That's great! I'll be down in a bit\n"
         });
 
         if (choice == 2)
@@ -615,24 +644,24 @@ public static class ChoiceSelector
         }
         else
         {
-            return choiceEatBreakfast();//I'm already late for work, I should get going
+            return Ending4.lateforwork();
         }
     }
     public static string choiceDishes()
     {
         int choice = choiceTemplate(2, 1, new List<string>
         {
-            "A. I'm running a bit late, but a quick bite shouldn't hurt.",
-            "B. This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late.\n"
+            "A. My intuition says not to eat it after what happened yesterday midnight, but a quick bite shouldn't hurt.",
+            "B. Haah-- this breakfast really looks amazing, but I really can't get over what happened yesterday midnight.\n"
         });
 
         if (choice == 1)
-        {
+        {  
             return Ending4.poisonedFood();
         }
         else
         {
-            return choiceDishes();//This breakfast looks amazing, and I'm really tempted to dive in, but I'm running a bit late.
+            return choiceNextMove();
         }
     }
     public static string choiceTrytoKill()
@@ -679,8 +708,10 @@ public static class ChoiceSelector
     {
         for (int x = 0; x < maxChoice; x++)
         {
+            ForegroundColor = ConsoleColor.Yellow;
             Write($"{choices[x]}\n");
         }
+        ResetColor();
         return GetChoice(maxChoice);
     }
     private static int GetChoice(int maxChoice)
@@ -704,7 +735,7 @@ public static class ChoiceSelector
     static void say(string message)
     {
         WriteLine($"{message}\n");
-        while (ReadKey(true).Key != ConsoleKey.Spacebar)
+        while (ReadKey(true).Key != ConsoleKey.DownArrow)
         {
             // Continue consuming keys until Enter is pressed
         }

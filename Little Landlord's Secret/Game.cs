@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static System.Console;
+using System.IO;
 
 namespace Little_Landlord_s_Secret
 {
@@ -21,9 +22,10 @@ namespace Little_Landlord_s_Secret
         private MapType CurrentMapType;
         private World MyWorld;
         private Player CurrentPlayer;
+        public string[,] grid;
         public void StartKitchen()
         {
-            string[,] grid = RoomParser.ParseFileToArray("Kitchen.txt");
+            grid = RoomParser.ParseFileToArray("Kitchen.txt");
             MyWorld = new World(grid);
             CurrentPlayer = new Player(9,11);
             CurrentMapType = MapType.StartKitchen;
@@ -31,8 +33,7 @@ namespace Little_Landlord_s_Secret
         }
         public void StartHouse(int x, int y)
         {
-            
-            string[,] grid = RoomParser.ParseFileToArray("House.txt");
+            grid = RoomParser.ParseFileToArray("House.txt");
             MyWorld = new World(grid);
             CurrentPlayer = new Player(x, y);
             CurrentMapType = MapType.StartHouse;
@@ -40,7 +41,7 @@ namespace Little_Landlord_s_Secret
         }
         public void StartkateRoom()
         {
-            string[,] grid = RoomParser.ParseFileToArray("KateRoom.txt");
+            grid = RoomParser.ParseFileToArray("KateRoom.txt");
             MyWorld = new World(grid);
             CurrentPlayer = new Player(5,3);
             CurrentMapType = MapType.StartKateRoom;
@@ -50,8 +51,8 @@ namespace Little_Landlord_s_Secret
         {
             string[,] grid =
             {
-                {"=", "=", "=", "=", "=", "=","=", "="},
-                {"|", " ", " ", "|", " ", "|"," ", "|"},
+                {"=", "=", "=", "=", " ", "=","=", "="},
+                {"|", " ", " ", "|", "?", "|","?", "|"},
                 {"|", " ", " ", "|", " ", " "," ", "|"},
                 {"|", " ", " ", "=", "+", "0"," ", "|"},
                 {"|", " ", " ", " ", " ", " "," ", "|"},
@@ -116,6 +117,33 @@ namespace Little_Landlord_s_Secret
                 switch (CurrentMapType)
                 {
                     case MapType.StartHouse:
+                        if (CurrentPlayer.X == 31 && CurrentPlayer.Y == 21 || CurrentPlayer.X == 32 && CurrentPlayer.Y == 21 || CurrentPlayer.X == 33 && CurrentPlayer.Y == 21 || CurrentPlayer.X == 34 && CurrentPlayer.Y == 21 || CurrentPlayer.X == 35 && CurrentPlayer.Y == 21)
+                        {
+                            SetCursorPosition(0, 23);
+                            ForegroundColor = ConsoleColor.Yellow;
+                            say("> Do you want to sit down at the sofa?");
+                            ResetColor();
+                            WriteLine("A. Yes\n" +
+                                "B. No.\n");
+                            int choice = GetChoice(2);
+                            if (choice == 1)
+                            {
+                                Clear();
+                                normalEnding.sitLivingRoom();
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        if (CurrentPlayer.X == 50 && CurrentPlayer.Y == 18)
+                        {
+                            CurrentPlayer.X = 49;
+                            SetCursorPosition(0, 23);
+                            ForegroundColor = ConsoleColor.Yellow;
+                            say($"You just got here and already want to leave?");
+                            ResetColor();
+                        }
                         if (CurrentPlayer.X == 12 && CurrentPlayer.Y == 10 && Map.enterKitchen && Map.rustyknife && !Map.lieknife)
                         {
                             Clear();
@@ -179,7 +207,7 @@ namespace Little_Landlord_s_Secret
                                 CurrentPlayer.Y = 7;
                                 SetCursorPosition(0, 23);
                                 WriteLine($"> {Program.player}: The door's locked. Weird.");
-                                while (ReadKey(true).Key != ConsoleKey.Spacebar)
+                                while (ReadKey(true).Key != ConsoleKey.DownArrow)
                                 {
                                 }
                                 Clear();
@@ -206,7 +234,7 @@ namespace Little_Landlord_s_Secret
                             Map.rustyknife = true;
                             SetCursorPosition(0, 16);
                             ForegroundColor = ConsoleColor.Yellow;
-                            say("You picked up a Rusty Knife!");
+                            say("> You picked up a Rusty Knife!\n");
                             ResetColor();
                             say($"{Program.player}: And what's a knife doing in here huh..");
                         }
@@ -244,7 +272,7 @@ namespace Little_Landlord_s_Secret
                                 CurrentPlayer.Y = 3;
                                 SetCursorPosition(0, 6);
                                 say($"> {Program.player}: Huh, a drawer. But it's locked again.");
-                                while (ReadKey(true).Key != ConsoleKey.Spacebar)
+                                while (ReadKey(true).Key != ConsoleKey.DownArrow)
                                 {
                                 }
                                 Clear();
@@ -271,12 +299,23 @@ namespace Little_Landlord_s_Secret
                                 }
                                 ResetColor();
                                 Clear();
-                                say($"{Program.player}: ??!?!?! ..w..");
-                                say($"{Program.player}: SHIIIIIT");
+                                say($"{Program.player}: ??!?!?! ..w..\n");
+                                say($"{Program.player}: SHIIIIIT\n");
+                                say($"{Program.player}: Calm down, no.. I should've expected it.\n");
+                                say($"{Program.player}: (agitated) I mean.. aha.. I've read the letter! I should've expected it.\n");
                                 Clear();
                             }
                         }
-                        break;
+                        if (CurrentPlayer.X == 5 && CurrentPlayer.Y == 3 && Map.discoveredBody)
+                        {
+                            if (!Map.someonedoor)
+                            {
+                                Map.someonedoor = true;
+                                SetCursorPosition(0, 6);
+                                say($"{Program.player}: (whispers) Looks like I've been..");
+                            }
+                        }
+                            break;
                     case MapType.StartJoneRoom:
                         if (CurrentPlayer.X == 2 && CurrentPlayer.Y == 5)
                         {
@@ -288,7 +327,9 @@ namespace Little_Landlord_s_Secret
                             {
                                 Map.room1key = true;
                                 SetCursorPosition(0, 6);
-                                say("> You found a key!");
+                                ForegroundColor = ConsoleColor.Yellow;
+                                say("> You found a key!\n");
+                                ResetColor();
                                 say("> Where do you think this leads to?");
                                 Clear();
                             }
@@ -299,13 +340,29 @@ namespace Little_Landlord_s_Secret
                             {
                                 Map.drawerkey = true;
                                 SetCursorPosition(0, 6);
-                                say("> You found an ancient key");
-                                say("> Looks like you could open some drawer with this");
-                                while (ReadKey(true).Key != ConsoleKey.Spacebar)
+                                ForegroundColor = ConsoleColor.Yellow;
+                                say("> You found a small key!\n");
+                                ResetColor();
+                                say("> Now what's this for?");
+                                while (ReadKey(true).Key != ConsoleKey.DownArrow)
                                 {
                                 }
                                 Clear();
                             }
+                        }
+                        else if (CurrentPlayer.X == 4 && CurrentPlayer.Y == 0)
+                        {
+                            SetCursorPosition(0, 6);
+                            say("> Do you want to go to the second floor?\n");
+                            WriteLine("A. Yes\n" +
+                                "B. No\n");
+                            int choice = GetChoice(2);
+                            if (choice == 1)
+                            {
+                                Map.joneroom = true;
+                                Ending4.tenant2Room();
+                            }
+                            Clear();
                         }
                         break;
                 }
@@ -315,7 +372,7 @@ namespace Little_Landlord_s_Secret
         static void say(string message)
         {
             WriteLine($"{message}");
-            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            while (ReadKey(true).Key != ConsoleKey.DownArrow)
             {
                 // Continue consuming keys until Enter is pressed
             }

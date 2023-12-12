@@ -73,7 +73,7 @@ namespace Little_Landlord_s_Secret
         static void say(string message)
         {
             WriteLine($"{message}\n");
-            while (ReadKey(true).Key != ConsoleKey.Spacebar)
+            while (ReadKey(true).Key != ConsoleKey.DownArrow)
             {
                 // Continue consuming keys until Enter is pressed
             }

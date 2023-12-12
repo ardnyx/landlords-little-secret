@@ -56,7 +56,7 @@ namespace Little_Landlord_s_Secret
   
   CONTROLS:
   (Press ENTER to confirm)
-  (Press SPACEBAR to proceed to the next dialogue)
+  (Press DOWN ARROW to proceed to the next dialogue)
   (Type 1,2,3 or 4 to navigate between choices)
 ";
             List<string> options = new List<string> { "Play", "Exit" };

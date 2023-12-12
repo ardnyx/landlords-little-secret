@@ -41,7 +41,7 @@ namespace Little_Landlord_s_Secret
             {
                 return false;
             }
-            return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "?" || Grid[y, x] == "*";
+            return Grid[y, x] == " " || Grid[y, x] == "X" || Grid[y, x] == "?" || Grid[y, x] == "*" || Grid[y, x] == "[" || Grid[y, x] == "]" || Grid[y, x] == "-";
         }
     }
 }
